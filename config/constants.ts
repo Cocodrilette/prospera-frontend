@@ -1,4 +1,7 @@
 export const constants = {
+  server: {
+    baseUrl: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
+  },
   providers: {
     paypal: {
       authUrl: process.env.NEXT_PUBLIC_PAYPAL_AUTH_URL,
