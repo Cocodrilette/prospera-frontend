@@ -3,5 +3,5 @@ type MainType = {
 }
 
 export function Main({ children }: MainType) {
-  return <main>{children}</main>
+  return <main className="flex justify-center items-center">{children}</main>
 }
