@@ -65,7 +65,7 @@ export function PayPalProvider() {
   }, [])
 
   return (
-    <div className="m-auto">
+    <div className="max-w-md m-auto">
       <PayPalScriptProvider options={initialOptions}>
         {isLoading ? (
           <Message content="Loading..." />
@@ -150,13 +150,16 @@ export function PayPalProvider() {
                   // Or go to another URL:  actions.redirect('thank_you.html');
                   const transaction =
                     orderData.purchase_units[0].payments.captures[0]
+
+                  const response = await fetch(
+                    `${constants.server.baseUrl}/orders/complete/${orderData.id}`,
+                    { method: "POST" }
+                  )
+
+                  console.log({ response })
+
                   setMessage(
                     `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
-                  )
-                  console.log(
-                    "Capture result",
-                    orderData,
-                    JSON.stringify(orderData, null, 2)
                   )
                 }
               } catch (error) {
