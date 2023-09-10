@@ -1,7 +1,3 @@
-type MainType = {
-  children: React.ReactNode
-}
-
-export function Main({ children }: MainType) {
-  return <main className="p-5">{children}</main>
+export function Main({ children }: { children: React.ReactNode }) {
+  return <main className="flex flex-col">{children}</main>
 }

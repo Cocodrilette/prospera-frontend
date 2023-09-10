@@ -7,19 +7,10 @@ import { useEffect, useState } from "react"
 import { constants } from "../../config/constants"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useAccount } from "wagmi"
-
-function Message({ content }: any) {
-  return <p>{content}</p>
-}
+import { MessageCard } from "../alerts/MessageCard"
 
 export function PayPalProvider() {
   const userAccount = useAccount()
-
-  const initialOptions = {
-    clientId: constants.providers.paypal.clientId,
-    "enable-funding": "paypal",
-    "data-sdk-integration-source": "integrationbuilder_ac",
-  }
 
   const [message, setMessage] = useState("")
   const [paypalAuthToken, setPaypalAuthToken] = useState<string | null>(null)
@@ -66,9 +57,9 @@ export function PayPalProvider() {
 
   return (
     <div className="max-w-md m-auto">
-      <PayPalScriptProvider options={initialOptions}>
+      <PayPalScriptProvider options={constants.providers.paypal.initialOptions}>
         {isLoading ? (
-          <Message content="Loading..." />
+          <MessageCard type={"info"} content="Loading..." />
         ) : (
           <PayPalButtons
             style={{
@@ -172,7 +163,7 @@ export function PayPalProvider() {
           />
         )}
       </PayPalScriptProvider>
-      <Message content={message} />
+      <MessageCard type={"error"} content={message} />
     </div>
   )
 }
