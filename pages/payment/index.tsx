@@ -5,6 +5,8 @@ import { Layout } from "../../components/layout/layout"
 import { useAccount } from "wagmi"
 import { ConnectYourWallet } from "../../components/alerts/connectYouWallet"
 import { useEffect, useState } from "react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { LinkButton } from "../../components/common/LinkButton"
 
 const Payment: NextPage = () => {
   const { address, isConnecting, isConnected } = useAccount()
@@ -12,10 +14,16 @@ const Payment: NextPage = () => {
 
   useEffect(() => {
     setDomLoaded(true)
-  })
+  }, [])
 
   return (
     <Layout headerOptions={{ title: "Payment", description: "Payment" }}>
+      <div className="p-2 md:p-5">
+        <LinkButton className="bg-terciaryGreen" href="/">
+          Back to Home
+        </LinkButton>
+      </div>
+      <ConnectButton />
       {!domLoaded ? (
         <div>Loading...</div>
       ) : (
