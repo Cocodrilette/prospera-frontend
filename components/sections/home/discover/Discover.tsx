@@ -13,7 +13,7 @@ export function Discover() {
     "Committed to leveraging technology for farmer empowerment, innovation, investor success, and global impact. Revolutionizing the intersection of farming and investment for a secure, prosperous future."
 
   return (
-    <ScreenSection id="discover">
+    <ScreenSection id="discover" className="min-h-screen">
       <div className="grid gap-2 lg:gap-5 grid-cols-1 lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 h-full w-full">
         <DiscoverCard
           className="bg-primaryGreen"
