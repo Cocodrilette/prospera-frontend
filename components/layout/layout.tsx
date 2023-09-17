@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { Header } from "./header"
 import { Footer } from "./footer"
 import { Main } from "./main"
 
@@ -21,8 +20,6 @@ export function Layout({ children, headerOptions }: LayoutType) {
         <meta content="" name="" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-
-      <Header />
 
       <Main>{children}</Main>
 

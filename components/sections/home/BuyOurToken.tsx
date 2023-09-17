@@ -1,9 +1,23 @@
+import { TypeAnimation } from "react-type-animation"
+import { ScreenSection } from "../../layout/ScreenSection"
+
 export function BuyOurToken() {
   return (
-    <section className="flex items-center justify-center bg-gradient-to-tr from-slate-800 to-black rounded-md shadow-lg m-2 md:m-5 px-2 py-20 md:p-20">
-      <div className=" max-w-7xl p-5 ">
+    <ScreenSection className="bg-black" id="buy-cielo">
+      <div className="flex flex-col items-center justify-center max-w-7xl p-5 m-auto h-full">
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-300 text-center mb-10">
-          Buy <span className="text-indigo-600">Cielo</span>
+          Buy{" "}
+          <TypeAnimation
+            sequence={["our", 1000, "your", 1000]}
+            style={{
+              display: "inline-block",
+            }}
+            repeat={Infinity}
+            speed={1}
+          >
+            our
+          </TypeAnimation>{" "}
+          <span className="text-indigo-600">Cielo</span>
         </h2>
         <div className="flex flex-col gap-5">
           <p className="text-xl text-gray-400 max-w-3xl ">
@@ -29,6 +43,6 @@ export function BuyOurToken() {
           </a>
         </div>
       </div>
-    </section>
+    </ScreenSection>
   )
 }
