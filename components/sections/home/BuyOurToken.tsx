@@ -1,4 +1,4 @@
-import { TypeAnimation } from "react-type-animation"
+import { ExternalLink } from "../../common/ExternalLink"
 import { ScreenSection } from "../../layout/ScreenSection"
 
 export function BuyOurToken() {
@@ -6,32 +6,20 @@ export function BuyOurToken() {
     <ScreenSection className="bg-black" id="buy-cielo">
       <div className="flex flex-col items-center justify-center max-w-7xl p-5 m-auto h-full">
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-300 text-center mb-10">
-          Buy{" "}
-          <TypeAnimation
-            sequence={["our", 1000, "your", 1000]}
-            style={{
-              display: "inline-block",
-            }}
-            repeat={Infinity}
-            speed={1}
-          >
-            our
-          </TypeAnimation>{" "}
-          <span className="text-indigo-600">Cielo</span>
+          Buy your <span className="text-indigo-600">Cielo's</span>
         </h2>
         <div className="flex flex-col gap-5">
           <p className="text-xl text-gray-400 max-w-3xl ">
-            <span className="font-bold">Cielo</span> is the native token of the
-            Prospera ecosystem. It is a ERC-20 token build on top of the Polygon
-            ZK blockchain. Providing the best of both worlds, the security of
-            Ethereum and the speed of Polygon.
-          </p>
-          <p className="text-xl text-gray-400 max-w-3xl ">
-            <span className="font-bold">
-              The token is the one and only way to interact with the protocol.{" "}
-            </span>
-            It is used to pay for the fees and future contracts. It is also used
-            to provide liquidity to the protocol.
+            Cielo is the Prospera's native{" "}
+            <ExternalLink href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/">
+              ERC-20 token
+            </ExternalLink>{" "}
+            on{" "}
+            <ExternalLink href="https://polygon.technology/home">
+              Polygon ZK
+            </ExternalLink>
+            , blending Ethereum's security with Polygon's speed. It's your
+            gateway to our protocol, serving for fees, contracts, and liquidity.
           </p>
         </div>
         <div className="flex flex-col items-center justify-center gap-10">

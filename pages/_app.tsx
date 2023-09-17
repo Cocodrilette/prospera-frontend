@@ -3,6 +3,7 @@ import "@rainbow-me/rainbowkit/styles.css"
 
 import { SWRConfig } from "swr"
 import type { AppProps } from "next/app"
+import { Analytics } from "@vercel/analytics/react"
 import { publicProvider } from "wagmi/providers/public"
 import { polygonZkEvm, polygonZkEvmTestnet } from "wagmi/chains"
 import { configureChains, createConfig, WagmiConfig } from "wagmi"
@@ -39,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RainbowKitProvider chains={chains}>
         <SWRConfig>
           <Component {...pageProps} />
+          <Analytics />
         </SWRConfig>
       </RainbowKitProvider>
     </WagmiConfig>
