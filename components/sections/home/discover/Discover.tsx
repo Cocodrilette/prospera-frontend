@@ -4,13 +4,13 @@ import { DiscoverCard } from "./DiscoverCard"
 
 export function Discover() {
   const blockchainBasedDescription =
-    "We believe in the power of blockchain to create a new economy that where farmers and investors can interact in a secure and transparent way. We are designing our protocol-specific token to be used as a medium of exchange and store of value for the Prospera ecosystem."
+    "We're harnessing blockchain's potential to forge a secure, transparent economy where farmers and investors seamlessly connect. Our protocol-specific token serves as both currency and value store in the Prospera ecosystem."
   const descentralizationDescription =
-    "Prospera is a decentralized futures market that allows farmers to hedge against price volatility and provides investors with a secure and easy-to-use financial instrument . Keeping businesses secure through a robust blokchain-based protocol."
+    "Decentralized futures market for farmers to hedge against price volatility and offer secure financial instruments to investors via our robust blockchain protocol."
   const lowerFeesDescription =
-    "As we reduce the number of intermediaries, we reduce the fees and increase the profits for both farmers and investors. With trades that are executed in a matter of seconds, you can be sure that you will never miss a good opportunity"
+    "By cutting intermediaries, we lower fees and boost profits for farmers and investors. Lightning-fast trades ensure you seize every opportunity."
   const empoweringFarmersDescription =
-    "We're committed to harnessing the potential of cutting-edge technology to empower farmers, create innovative solutions, drive investor success, and make a lasting global impact. Our vision is to revolutionize the way farming and investment intersect, ensuring a secure and prosperous future for all."
+    "Committed to leveraging technology for farmer empowerment, innovation, investor success, and global impact. Revolutionizing the intersection of farming and investment for a secure, prosperous future."
 
   return (
     <ScreenSection id="discover">
