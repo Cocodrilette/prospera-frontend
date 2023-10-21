@@ -22,7 +22,7 @@ export function DiscoverCard({
     <div
       onMouseEnter={() => setSelected(true)}
       onMouseLeave={() => setSelected(false)}
-      className={`inline-flex justify-center items-center font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-7xl leading-8 rounded-xl shadow-lg p-5 ${className}`}
+      className={`inline-flex justify-center items-center font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-6 xl leading-8 rounded-xl shadow-lg p-5 ${className}`}
     >
       {!mounted && (
         <p>
