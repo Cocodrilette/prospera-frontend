@@ -9,7 +9,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { LinkButton } from "../../components/common/LinkButton"
 
 const Payment: NextPage = () => {
-  const { address, isConnecting, isConnected } = useAccount()
+  const { isConnected } = useAccount()
   const [domLoaded, setDomLoaded] = useState(false)
 
   useEffect(() => {
@@ -18,12 +18,12 @@ const Payment: NextPage = () => {
 
   return (
     <Layout headerOptions={{ title: "Payment", description: "Payment" }}>
-      <div className="p-2 md:p-5">
+      <div className="flex justify-between p-2 md:p-5">
         <LinkButton className="bg-terciaryGreen" href="/">
           Back to Home
         </LinkButton>
+        <ConnectButton />
       </div>
-      <ConnectButton />
       {!domLoaded ? (
         <div>Loading...</div>
       ) : (
