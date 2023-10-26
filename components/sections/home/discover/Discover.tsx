@@ -14,7 +14,7 @@ export function Discover() {
 
   return (
     <ScreenSection id="discover" className="min-h-screen">
-      <div className="grid gap-2 lg:gap-5 grid-cols-1 lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 h-full w-full">
+      <div className="grid gap-2 lg:gap-5 grid-cols-1 lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 h-full w-full ">
         <DiscoverCard
           className="bg-primaryGreen"
           description={blockchainBasedDescription}

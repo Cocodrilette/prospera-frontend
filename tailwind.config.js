@@ -14,6 +14,10 @@ module.exports = {
         oceanGreen: "#6fc4a4",
         minimalPink: "#f7859b",
       },
+      backgroundColor: {
+        "gradient-tr":
+          "linear-gradient(to top right, #fbfad3, #c6e377, #729d39, #36622b, #6fc4a4, #f7859b)",
+      },
     },
   },
   plugins: [],

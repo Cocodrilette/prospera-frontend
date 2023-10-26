@@ -8,5 +8,5 @@ html {
 }
 
 body {
-  @apply bg-primaryYellow;
+  @apply bg-gradient-tr;
 }

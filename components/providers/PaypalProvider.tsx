@@ -8,6 +8,7 @@ import { constants } from "../../config/constants"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useAccount } from "wagmi"
 import { MessageCard } from "../alerts/MessageCard"
+import { Disabled } from "../common/Disabled"
 
 export function PayPalProvider() {
   // const userAccount = useAccount()
@@ -55,13 +56,7 @@ export function PayPalProvider() {
   //   queryPayPalAuthToken()
   // }, [])
 
-  return (
-    <div className="max-w-md m-auto">
-      <h1 className="text-xl">
-        We are currently working on this feature. Please check back later.
-      </h1>
-    </div>
-  )
+  return <Disabled></Disabled>
 }
 
 /* <PayPalScriptProvider options={constants.providers.paypal.initialOptions}>

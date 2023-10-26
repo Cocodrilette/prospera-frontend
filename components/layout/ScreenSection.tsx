@@ -8,7 +8,7 @@ export function ScreenSection({
   id?: string
 }) {
   return (
-    <section id={id} className={`h-screen p-2 lg:px-20 ${className}`}>
+    <section id={id} className={`h-screen p-2 lg:px-20 ${className} `}>
       {children}
     </section>
   )
