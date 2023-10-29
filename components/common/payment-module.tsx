@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { PayPalProvider } from "../providers/paypal-provider"
+import { ScreenSection } from "../layout/screen-section"
 
 export function PaymentModule() {
   const [amount, setAmount] = useState(10)
@@ -20,10 +21,10 @@ export function PaymentModule() {
   }
 
   return (
-    <section className="flex flex-col m-2 md:max-w-lg">
+    <ScreenSection className="flex flex-col mx-2 my-10 md:my-20 md:max-w-2xl">
       <div className="flex flex-col mb-10">
         <div>
-          <p className="text-5xl font-extrabold text-gray-400">
+          <p className="text-5xl md:text-6xl font-extrabold text-gray-400">
             You will receive{" "}
             <span className="text-gray-700">
               {getCieloAmountFromPaypalAmount(amount)}
@@ -31,8 +32,8 @@ export function PaymentModule() {
             cielo{" "}
             {amount > 1 ? (
               <>
-                + our early access{" "}
-                <span className="text-gray-500"> IA generated NFT.</span>
+                + our{" "}
+                <span className="text-gray-500">early adorters insignia</span>
               </>
             ) : (
               <></>
@@ -66,7 +67,7 @@ export function PaymentModule() {
               showPaypal && "hidden"
             } shadow-md`}
           >
-            Preview NFT
+            Preview Insignia
           </button>
         </div>
       </div>
@@ -74,6 +75,6 @@ export function PaymentModule() {
       <div className={showPaypal ? "" : "hidden"}>
         <PayPalProvider orderDetails={{ amount: cieloAmount }}></PayPalProvider>
       </div>
-    </section>
+    </ScreenSection>
   )
 }
