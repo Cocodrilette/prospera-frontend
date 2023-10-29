@@ -1,7 +1,8 @@
 import { Fade } from "react-awesome-reveal"
-import { ExternalLink } from "../../common/ExternalLink"
-import { ScreenSection } from "../../layout/ScreenSection"
+import { ExternalLink } from "../../common/external-link"
+import { ScreenSection } from "../../layout/screen-section"
 import Link from "next/link"
+import { PriceReference } from "../../common/price-reference"
 
 export function BuyOurToken() {
   return (
@@ -34,9 +35,7 @@ export function BuyOurToken() {
         </div>
         <Fade delay={5}>
           <div className="flex flex-col items-center justify-center gap-10">
-            <h3 className="text-3xl text-gray-900 max-w-3xl text-center mt-10">
-              1 Cielo = 1 USD
-            </h3>{" "}
+            <PriceReference />{" "}
             <Link
               href="/buy-cielo"
               className="text-xl bg-indigo-600 text-white py-2 px-10 font-bold rounded-full"

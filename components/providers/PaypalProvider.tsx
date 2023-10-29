@@ -7,8 +7,8 @@ import { useEffect, useState } from "react"
 import { constants } from "../../config/constants"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useAccount } from "wagmi"
-import { MessageCard } from "../alerts/MessageCard"
-import { Disabled } from "../common/Disabled"
+import { MessageCard } from "../alerts/message-card"
+import { Disabled } from "../common/disabled"
 
 export function PayPalProvider() {
   // const userAccount = useAccount()

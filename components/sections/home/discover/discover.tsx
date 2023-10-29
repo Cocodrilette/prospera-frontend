@@ -1,6 +1,6 @@
-import { Underlined } from "../../../common/Underlined"
-import { ScreenSection } from "../../../layout/ScreenSection"
-import { DiscoverCard } from "./DiscoverCard"
+import { Underlined } from "../../../common/underlined"
+import { ScreenSection } from "../../../layout/screen-section"
+import { DiscoverCard } from "./discover-card"
 
 export function Discover() {
   const blockchainBasedDescription =

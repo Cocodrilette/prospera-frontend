@@ -1,4 +1,4 @@
-import { StrongText } from "../common/StrongText"
+import { StrongText } from "../common/strong-text"
 
 export function ConnectYourWallet() {
   return (

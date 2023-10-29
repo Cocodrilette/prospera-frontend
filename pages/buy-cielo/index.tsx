@@ -1,12 +1,13 @@
 import { NextPage } from "next"
 
-import { PayPalProvider } from "../../components/providers/PaypalProvider"
+import { PayPalProvider } from "../../components/providers/paypal-provider"
 import { Layout } from "../../components/layout/layout"
 import { useAccount } from "wagmi"
-import { ConnectYourWallet } from "../../components/alerts/connectYouWallet"
+import { ConnectYourWallet } from "../../components/alerts/connect-your-wallet"
 import { useEffect, useState } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { LinkButton } from "../../components/common/LinkButton"
+import { LinkButton } from "../../components/common/link-button"
+import { PaymentModule } from "../../components/common/payment-module"
 
 const Payment: NextPage = () => {
   const { isConnected } = useAccount()
@@ -27,7 +28,7 @@ const Payment: NextPage = () => {
       {!domLoaded ? (
         <div>Loading...</div>
       ) : (
-        <>{!isConnected ? <ConnectYourWallet /> : <PayPalProvider />}</>
+        <>{!isConnected ? <ConnectYourWallet /> : <PaymentModule />}</>
       )}
     </Layout>
   )

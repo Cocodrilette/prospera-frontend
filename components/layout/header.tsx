@@ -1,4 +1,4 @@
-import { LinkButton } from "../common/LinkButton"
+import { LinkButton } from "../common/link-button"
 import { Montserrat } from "next/font/google"
 
 const montserrat = Montserrat({

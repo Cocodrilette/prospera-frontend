@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { StrongText } from "./StrongText"
+import { StrongText } from "./strong-text"
 import teamWorkingImg from "../../public/images/team-working.svg"
 
 export function Disabled() {

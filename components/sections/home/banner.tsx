@@ -2,12 +2,12 @@ import Image from "next/image"
 import { Montserrat } from "next/font/google"
 import { Fade } from "react-awesome-reveal"
 
-import { BiggerTitle } from "../../common/BiggerTitle"
-import { Text } from "../../common/Text"
+import { BiggerTitle } from "../../common/bigger-title"
+import { Text } from "../../common/text"
 import fieldBg from "../../../public/images/field-bg.jpg"
 import { useEffect, useRef } from "react"
-import { LinkButton } from "../../common/LinkButton"
-import { ScreenSection } from "../../layout/ScreenSection"
+import { LinkButton } from "../../common/link-button"
+import { ScreenSection } from "../../layout/screen-section"
 
 const montserrat = Montserrat({
   weight: "400",

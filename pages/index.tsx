@@ -1,9 +1,9 @@
 import type { NextPage } from "next"
 
 import { Layout } from "../components/layout/layout"
-import { Banner } from "../components/sections/home/Banner"
-import { Discover } from "../components/sections/home/discover/Discover"
-import { BuyOurToken } from "../components/sections/home/BuyOurToken"
+import { Banner } from "../components/sections/home/banner"
+import { Discover } from "../components/sections/home/discover/discover"
+import { BuyOurToken } from "../components/sections/home/buy-our-token"
 
 const Home: NextPage = () => {
   return (
