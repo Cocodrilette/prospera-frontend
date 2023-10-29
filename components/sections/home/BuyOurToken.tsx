@@ -38,7 +38,7 @@ export function BuyOurToken() {
               1 Cielo = 1 USD
             </h3>{" "}
             <Link
-              href="/payment"
+              href="/buy-cielo"
               className="text-xl bg-indigo-600 text-white py-2 px-10 font-bold rounded-full"
             >
               Buy now
