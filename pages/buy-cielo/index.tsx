@@ -19,11 +19,10 @@ const Payment: NextPage = () => {
 
   return (
     <Layout headerOptions={{ title: "Payment", description: "Payment" }}>
-      <div className="flex justify-between p-2 md:p-5 ">
+      <div className="flex justify-end p-2 md:p-5">
         <LinkButton className="bg-black" href="/">
           Back to Home
         </LinkButton>
-        <ConnectButton />
       </div>
       <div className="flex flex-col justify-center items-center">
         {!domLoaded ? (
