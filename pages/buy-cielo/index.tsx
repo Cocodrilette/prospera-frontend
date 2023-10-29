@@ -25,11 +25,13 @@ const Payment: NextPage = () => {
         </LinkButton>
         <ConnectButton />
       </div>
-      {!domLoaded ? (
-        <div>Loading...</div>
-      ) : (
-        <>{!isConnected ? <ConnectYourWallet /> : <PaymentModule />}</>
-      )}
+      <div className="flex flex-col justify-center items-center">
+        {!domLoaded ? (
+          <div>Loading...</div>
+        ) : (
+          <>{!isConnected ? <ConnectYourWallet /> : <PaymentModule />}</>
+        )}
+      </div>
     </Layout>
   )
 }
