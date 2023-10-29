@@ -5,9 +5,9 @@ import { Layout } from "../../components/layout/layout"
 import { useAccount } from "wagmi"
 import { ConnectYourWallet } from "../../components/alerts/connect-your-wallet"
 import { useEffect, useState } from "react"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { LinkButton } from "../../components/common/link-button"
 import { PaymentModule } from "../../components/common/payment-module"
+import LoadingCard from "../../components/common/loading-card"
 
 const Payment: NextPage = () => {
   const { isConnected } = useAccount()
@@ -26,7 +26,7 @@ const Payment: NextPage = () => {
       </div>
       <div className="flex flex-col justify-center items-center">
         {!domLoaded ? (
-          <div>Loading...</div>
+          <LoadingCard />
         ) : (
           <>{!isConnected ? <ConnectYourWallet /> : <PaymentModule />}</>
         )}
