@@ -21,7 +21,7 @@ export function PaymentModule() {
   }
 
   return (
-    <ScreenSection className="flex flex-col mx-2 my-10 md:my-20 md:max-w-2xl">
+    <ScreenSection className="flex flex-col mx-2 my-5 md:my-20 md:max-w-2xl">
       <div className="flex flex-col mb-10">
         <div>
           <p className="text-5xl md:text-6xl font-extrabold text-gray-400">
