@@ -1,6 +1,6 @@
 import { Underlined } from "../../../common/underlined"
 import { ScreenSection } from "../../../layout/screen-section"
-import { DiscoverCard } from "./discover-card"
+import { DiscoverCard } from "./discover-section"
 
 export function Discover() {
   const blockchainBasedDescription =
@@ -13,45 +13,68 @@ export function Discover() {
     "Committed to leveraging technology for farmer empowerment, innovation, investor success, and global impact. Revolutionizing the intersection of farming and investment for a secure, prosperous future."
 
   return (
-    <ScreenSection id="discover" className="min-h-screen">
-      <div className="grid gap-2 lg:gap-5 grid-cols-1 lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 h-full w-full ">
+    <div id="discover" className="bg-gray-950">
+      <div className="flex flex-col text-white">
         <DiscoverCard
-          className="bg-primaryGreen"
+          id="blockchain-based"
           description={blockchainBasedDescription}
+          pointsTo="decentralized"
         >
           <p>
-            <Underlined> Blockchain based</Underlined> economy to interact with
-            ease and security
+            <Underlined className="text-indigo-600">
+              {" "}
+              Blockchain based
+            </Underlined>{" "}
+            economy to interact with ease and security
           </p>
         </DiscoverCard>
         <DiscoverCard
-          className="bg-minimalPink"
+          id="decentralized"
           description={descentralizationDescription}
+          pointsTo="lower-fees"
         >
           <p>
-            Secure <Underlined>descentralized</Underlined>, and{" "}
-            <Underlined>censorship-resistant</Underlined> futures market
+            Secure{" "}
+            <Underlined className="text-minimalPink">descentralized</Underlined>
+            , and{" "}
+            <Underlined className="text-minimalPink">
+              censorship-resistant
+            </Underlined>{" "}
+            futures market
           </p>
         </DiscoverCard>
         <DiscoverCard
-          className="bg-oceanGreen"
+          id="lower-fees"
           description={lowerFeesDescription}
+          pointsTo="empowering-farmers"
         >
           <p>
-            The <Underlined>lower fees</Underlined> out there and{" "}
-            <Underlined>lightning-fast</Underlined> trades
+            The{" "}
+            <Underlined className="text-primaryGreen">lower fees</Underlined>{" "}
+            out there and{" "}
+            <Underlined className="text-primaryGreen">
+              lightning-fast
+            </Underlined>{" "}
+            trades
           </p>
         </DiscoverCard>
         <DiscoverCard
-          className="bg-primaryGreen"
+          id="empowering-farmers"
           description={empoweringFarmersDescription}
+          pointsTo="buy-cielo"
         >
           <p>
-            <Underlined>Empowering Farmers</Underlined>,{" "}
-            <Underlined>boosting investors</Underlined> and changing the world
+            <Underlined className="text-oceanGreen">
+              Empowering Farmers
+            </Underlined>
+            ,{" "}
+            <Underlined className="text-oceanGreen">
+              boosting investors
+            </Underlined>{" "}
+            and changing the world
           </p>
         </DiscoverCard>
       </div>
-    </ScreenSection>
+    </div>
   )
 }
