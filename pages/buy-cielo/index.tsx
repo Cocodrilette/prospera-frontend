@@ -28,7 +28,7 @@ const Payment: NextPage = () => {
         {!domLoaded ? (
           <LoadingCard />
         ) : (
-          <>{!isConnected ? <ConnectYourWallet /> : <PaymentModule />}</>
+          <>{isConnected ? <PaymentModule /> : <ConnectYourWallet />}</>
         )}
       </div>
     </Layout>

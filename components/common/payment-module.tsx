@@ -94,7 +94,7 @@ export function PaymentModule() {
       />
 
       <div className={showPaypal ? "" : "hidden"}>
-        <PayPalProvider orderDetails={{ amount: cieloAmount }}></PayPalProvider>
+        <PayPalProvider orderDetails={{ amount: cieloAmount }} />
       </div>
     </ScreenSection>
   )

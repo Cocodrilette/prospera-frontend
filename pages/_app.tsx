@@ -5,7 +5,7 @@ import { SWRConfig } from "swr"
 import type { AppProps } from "next/app"
 import { Analytics } from "@vercel/analytics/react"
 import { publicProvider } from "wagmi/providers/public"
-import { polygonZkEvm, polygonZkEvmTestnet } from "wagmi/chains"
+import { polygonZkEvm, polygonZkEvmTestnet, hardhat } from "wagmi/chains"
 import { configureChains, createConfig, WagmiConfig } from "wagmi"
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
 
@@ -13,9 +13,11 @@ import { constants } from "../config/constants"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    polygonZkEvmTestnet,
+    hardhat,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-      ? [polygonZkEvmTestnet]
+      ? [
+          // polygonZkEvmTestnet
+        ]
       : [polygonZkEvm]),
   ],
   [publicProvider()]
