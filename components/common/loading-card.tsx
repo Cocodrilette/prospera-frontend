@@ -1,8 +1,12 @@
 import React from "react"
 
-const LoadingCard: React.FC = () => {
+interface LoadingCardProps {
+  className?: string
+}
+
+export function LoadingCard({ className }: LoadingCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
       <div className="animate-pulse flex space-x-4">
         <div className="rounded-full bg-gray-400 h-12 w-12"></div>
         <div className="flex-1 space-y-4 py-1">
