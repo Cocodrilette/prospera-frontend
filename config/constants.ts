@@ -18,4 +18,7 @@ export const constants = {
       projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     },
   },
+  legal: {
+    termsOfServiceUrl: process.env.NEXT_PUBLIC_TERMS_OF_SERVICE_URL || "",
+  },
 }

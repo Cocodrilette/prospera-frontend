@@ -2,11 +2,15 @@ import { useState } from "react"
 
 import { PayPalProvider } from "../providers/paypal-provider"
 import { ScreenSection } from "../layout/screen-section"
+import { TermsSheetCheckbox } from "./terms-sheet-checkbox"
+import { ExternalLink } from "./external-link"
+import { constants } from "../../config/constants"
 
 export function PaymentModule() {
   const [amount, setAmount] = useState(10)
   const [showPaypal, setShowPaypal] = useState(false)
   const [cieloAmount, setCieloAmount] = useState(amount) // [cielo]
+  const [conditionsAccepted, setConditionsAccepted] = useState(false)
 
   function getCieloAmountFromPaypalAmount(paypalAmount: number) {
     const cieloPrice = 1 // usd
@@ -29,15 +33,7 @@ export function PaymentModule() {
             <span className="text-gray-700">
               {getCieloAmountFromPaypalAmount(amount)}
             </span>{" "}
-            cielo{" "}
-            {amount > 1 ? (
-              <>
-                + our{" "}
-                <span className="text-gray-500">early adorters insignia</span>
-              </>
-            ) : (
-              <></>
-            )}
+            cielo's
           </p>
         </div>
         <form
@@ -52,22 +48,28 @@ export function PaymentModule() {
             value={amount}
           ></input>
         </form>
+        <TermsSheetCheckbox
+          checked={conditionsAccepted}
+          onChange={() => setConditionsAccepted(!conditionsAccepted)}
+          className="mt-5"
+        >
+          <p>
+            By using our app, you agree to our{" "}
+            <ExternalLink href={constants.legal.termsOfServiceUrl}>
+              terms and conditions
+            </ExternalLink>
+            .
+          </p>
+        </TermsSheetCheckbox>
         <div className="flex flex-col mt-5 gap-2">
           <button
+            disabled={!conditionsAccepted}
             onClick={() => setShowPaypal(true)}
-            className={`border-2 border-black bg-black text-white p-3 ${
+            className={`border-2 shadow-md border-black bg-black text-white p-3 disabled:opacity-60 ${
               showPaypal && "hidden"
             } shadow-md`}
           >
             Pay with Paypal
-          </button>
-          <button
-            onClick={() => {}}
-            className={` border-2 border-black p-3 ${
-              showPaypal && "hidden"
-            } shadow-md`}
-          >
-            Preview Insignia
           </button>
         </div>
       </div>
