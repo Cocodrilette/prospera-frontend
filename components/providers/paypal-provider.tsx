@@ -14,15 +14,23 @@ interface OrderDetails {
   amount: number
 }
 
+interface PayPalProviderProps {
+  orderDetails: OrderDetails
+  onPaymentSuccess: () => void
+  forceReRender?: any
+}
+
 export function PayPalProvider({
   orderDetails,
-}: {
-  orderDetails: OrderDetails
-}) {
+  onPaymentSuccess,
+  forceReRender,
+}: PayPalProviderProps) {
   const userAccount = useAccount()
 
   const [message, setMessage] = useState("")
   const [paypalAuthToken, setPaypalAuthToken] = useState<string | null>(null)
+  const [localOrderDetails, setLocalOrderDetails] =
+    useState<OrderDetails>(orderDetails)
   const [isLoading, setIsLoading] = useState(false)
 
   async function queryPayPalAuthToken() {
@@ -64,6 +72,48 @@ export function PayPalProvider({
     queryPayPalAuthToken()
   }, [])
 
+  useEffect(() => {
+    setLocalOrderDetails(orderDetails)
+  }, [orderDetails])
+
+  const handler = async () => {
+    try {
+      console.log({
+        userAddress: userAccount.address,
+        tokensAmount: localOrderDetails.amount,
+      })
+
+      const response = await fetch(`${constants.server.baseUrl}/orders`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${paypalAuthToken}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          userAddress: userAccount.address,
+          tokensAmount: localOrderDetails.amount,
+        }),
+      })
+
+      const orderData = await response.json()
+
+      if (orderData.orderID) {
+        return orderData.orderID
+      } else {
+        const errorDetail = orderData?.details?.[0]
+        const errorMessage = errorDetail
+          ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+          : JSON.stringify(orderData)
+
+        throw new Error(errorMessage)
+      }
+    } catch (error) {
+      console.error(error)
+      setMessage(`Could not initiate PayPal Checkout...${error}`)
+    }
+  }
+
   return (
     <>
       <PayPalScriptProvider options={constants.providers.paypal.initialOptions}>
@@ -71,48 +121,13 @@ export function PayPalProvider({
           <LoadingCard />
         ) : (
           <PayPalButtons
+            forceReRender={[forceReRender]}
             style={{
               shape: "rect",
               //color:'blue' change the default color of the buttons
               layout: "vertical", //default value. Can be changed to horizontal
             }}
-            createOrder={async () => {
-              try {
-                const response = await fetch(
-                  `${constants.server.baseUrl}/orders`,
-                  {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${paypalAuthToken}`,
-                      "Content-Type": "application/json",
-                      Prefer: "return=representation",
-                    },
-                    body: JSON.stringify({
-                      userAddress: userAccount.address,
-                      tokensAmount: 20,
-                    }),
-                  }
-                )
-
-                const orderData = await response.json()
-
-                console.log({ orderData })
-
-                if (orderData.orderID) {
-                  return orderData.orderID
-                } else {
-                  const errorDetail = orderData?.details?.[0]
-                  const errorMessage = errorDetail
-                    ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
-                    : JSON.stringify(orderData)
-
-                  throw new Error(errorMessage)
-                }
-              } catch (error) {
-                console.error(error)
-                setMessage(`Could not initiate PayPal Checkout...${error}`)
-              }
-            }}
+            createOrder={handler}
             onApprove={async (data, actions) => {
               console.log({ data })
               try {
@@ -161,6 +176,8 @@ export function PayPalProvider({
                   setMessage(
                     `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
                   )
+
+                  onPaymentSuccess()
                 }
               } catch (error) {
                 console.error(error)

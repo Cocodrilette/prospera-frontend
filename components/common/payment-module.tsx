@@ -24,6 +24,11 @@ export function PaymentModule() {
     setCieloAmount(newCieloAmount < 0 ? 0 : newCieloAmount)
   }
 
+  function onPaymentSuccess() {
+    setShowPaypal(false)
+    setConditionsAccepted(false)
+  }
+
   return (
     <ScreenSection className="flex flex-col mx-2 my-5 md:my-20 md:max-w-2xl">
       <div className="flex flex-col mb-10">
@@ -41,6 +46,7 @@ export function PaymentModule() {
           className="flex justify-center items-center w-full mt-5 mx-auto md:mt-10"
         >
           <input
+            disabled={showPaypal}
             className="text-center w-full p-2 border-2 bg-gray-50 shadow-md rounded-lg focus:outline-none focus:border-gray-600 text-3xl font-bold"
             placeholder="10"
             type="number"
@@ -75,7 +81,11 @@ export function PaymentModule() {
       </div>
 
       <div className={showPaypal ? "" : "hidden"}>
-        <PayPalProvider orderDetails={{ amount: cieloAmount }}></PayPalProvider>
+        <PayPalProvider
+          forceReRender={showPaypal}
+          orderDetails={{ amount: cieloAmount }}
+          onPaymentSuccess={onPaymentSuccess}
+        />
       </div>
     </ScreenSection>
   )
