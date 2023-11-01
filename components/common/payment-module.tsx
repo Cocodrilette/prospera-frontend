@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { PayPalProvider } from "../providers/paypal-provider"
 import { ScreenSection } from "../layout/screen-section"
@@ -28,6 +28,10 @@ export function PaymentModule() {
     setShowPaypal(false)
     setConditionsAccepted(false)
   }
+
+  useEffect(() => {
+    if (!conditionsAccepted) setShowPaypal(false)
+  }, [conditionsAccepted])
 
   return (
     <ScreenSection className="flex flex-col mx-2 my-5 md:my-20 md:max-w-2xl">
@@ -71,7 +75,7 @@ export function PaymentModule() {
           <button
             disabled={!conditionsAccepted}
             onClick={() => setShowPaypal(true)}
-            className={`border-2 shadow-md border-black bg-black text-white p-3 disabled:opacity-60 ${
+            className={`border-2 shadow-md rounded-md border-black bg-black text-white p-3 disabled:opacity-60 ${
               showPaypal && "hidden"
             } shadow-md`}
           >
