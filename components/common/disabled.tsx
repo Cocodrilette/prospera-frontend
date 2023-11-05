@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/legacy/image"
 import { StrongText } from "./strong-text"
 import teamWorkingImg from "../../public/images/team-working.svg"
 
