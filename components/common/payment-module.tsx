@@ -42,7 +42,7 @@ export function PaymentModule() {
             <span className="text-gray-700">
               {getCieloAmountFromPaypalAmount(amount)}
             </span>{" "}
-            cielo's
+            cielo&apos;s
           </p>
         </div>
         <form
