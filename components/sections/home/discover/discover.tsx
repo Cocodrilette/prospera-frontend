@@ -1,4 +1,4 @@
-import { Underlined } from "../../../common/underlined"
+import { Underlined } from "../../../common/text/underlined"
 import { ScreenSection } from "../../../layout/screen-section"
 import { DiscoverCard } from "./discover-section"
 

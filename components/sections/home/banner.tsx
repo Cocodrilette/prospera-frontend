@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Montserrat } from "next/font/google"
 import { Fade } from "react-awesome-reveal"
 
-import { BiggerTitle } from "../../common/bigger-title"
+import { BiggerTitle } from "../../common/text/bigger-title"
 import { Text } from "../../common/text"
 import fieldBg from "../../../public/images/field-bg.jpg"
 import { useEffect, useRef } from "react"

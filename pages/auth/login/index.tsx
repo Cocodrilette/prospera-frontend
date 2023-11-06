@@ -1,20 +1,20 @@
 import { NextPage } from "next"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { AiOutlineLoading } from "react-icons/ai"
 import { Card, Label, TextInput } from "flowbite-react"
 
 import { H1 } from "../../../components/common/text/h1"
+import { useAuth } from "../../../components/hooks/auth"
 import { Layout } from "../../../components/layout/layout"
 import { Header } from "../../../components/layout/header"
 import { Button } from "../../../components/common/button"
+import { Text } from "../../../components/common/text/text"
+import { useServer } from "../../../components/hooks/server"
 import { Container7XL } from "../../../components/common/container-7xl"
 import { isValidEmail } from "../../../utils/validation/is-valid-email"
-import { isValidPassword } from "../../../utils/validation/is-valid-password"
-import { AiOutlineLoading } from "react-icons/ai"
-import { useServer } from "../../../components/hooks/server"
-import { useRouter } from "next/router"
-import { useAuth } from "../../../components/hooks/auth"
-import { Text } from "../../../components/common/text"
 import { InternalLink } from "../../../components/common/internal-link"
+import { isValidPassword } from "../../../utils/validation/is-valid-password"
 
 interface AuthInput {
   isValid: boolean

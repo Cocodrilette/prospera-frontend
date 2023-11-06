@@ -1,5 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { StrongText } from "../common/strong-text"
+import { StrongText } from "../common/text/strong-text"
 
 interface ConnectYourWalletProps {
   children?: React.ReactNode
