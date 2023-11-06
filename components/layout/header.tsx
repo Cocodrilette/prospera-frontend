@@ -5,7 +5,6 @@ import { Container7XL } from "../common/container-7xl"
 import Link from "next/link"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { AiOutlineLoading } from "react-icons/ai"
-import { Button } from "../common/button"
 import { useRouter } from "next/router"
 
 export function Header() {
@@ -13,17 +12,8 @@ export function Header() {
 
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [isApp, setIsApp] = useState(false)
 
   useEffect(() => setMounted(true), [])
-
-  useEffect(() => {
-    if (router.pathname.includes("/app")) {
-      setIsApp(true)
-    } else {
-      setIsApp(false)
-    }
-  }, [router.pathname])
 
   return (
     <Container7XL>
@@ -36,43 +26,31 @@ export function Header() {
                 Prospera
               </span>
             </Link>
-            <div className="flex items-center">
-              {isApp ? (
-                <></>
-              ) : (
-                <Link
-                  href="/app"
-                  className="bg-gray-900 hover:bg-black text-white px-4 py-2 rounded-full"
-                >
-                  Open App
-                </Link>
-              )}
-              <button
-                onClick={() => setOpen(!open)}
-                data-collapse-toggle="navbar-hamburger"
-                type="button"
-                className="inline-flex items-center justify-center p-2 w-10 h-10 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                aria-controls="navbar-hamburger"
-                aria-expanded="false"
+            <button
+              onClick={() => setOpen(!open)}
+              data-collapse-toggle="navbar-hamburger"
+              type="button"
+              className="inline-flex items-center justify-center p-2 w-10 h-10 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              aria-controls="navbar-hamburger"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
               >
-                <span className="sr-only">Open main menu</span>
-                <svg
-                  className="w-5 h-5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 17 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 1h15M1 7h15M1 13h15"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
             <div
               className={`w-full ${open ? "" : "hidden"}`}
               id="navbar-hamburger"

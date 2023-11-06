@@ -88,6 +88,21 @@ export function Banner() {
               Buy Cielo
             </LinkButton>
           </Fade>
+          <Fade direction="up" duration={500}>
+            <LinkButton
+              href="/app"
+              className="text-sm md:text-md bg-white text-black"
+              onClick={() => {
+                descentralizationSection.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                  inline: "nearest",
+                })
+              }}
+            >
+              Open App
+            </LinkButton>
+          </Fade>
         </div>
         {/*  */}
       </div>

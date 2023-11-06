@@ -16,9 +16,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     hardhat,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-      ? [
-          // polygonZkEvmTestnet
-        ]
+      ? [polygonZkEvmTestnet]
       : [polygonZkEvm]),
   ],
   [publicProvider()]
