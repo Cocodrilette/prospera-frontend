@@ -2,23 +2,21 @@ import { FooterItem } from "./footer-item"
 import logo from "../../../public/favicon.ico"
 import Image from "next/image"
 import { Container7XL } from "../../common/container-7xl"
+import Link from "next/link"
 
 export const AppFooter = () => {
   return (
     <Container7XL>
-      <footer className="bg-white dark:bg-gray-900 p-2">
+      <footer className="border-gray-200 bg-gray-50 shadow-md rounded-md p-2">
         <div>
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a
-                href="https://flowbite.com/"
-                className="flex items-center gap-2"
-              >
+              <Link href="/" className="flex items-center gap-2">
                 <Image src={logo} className="h-8 w-8" alt="FlowBite Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   Prospera
                 </span>
-              </a>
+              </Link>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <FooterItem
@@ -34,9 +32,9 @@ export const AppFooter = () => {
               />
             </div>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <hr className="my-2 border-gray-200 sm:mx-auto" />
+          <div className="flex items-center justify-center md:justify-start py-3">
+            <span className="text-sm text-gray-500">
               © 2023{" "}
               <a href="https://flowbite.com/" className="hover:underline">
                 Prospera™
