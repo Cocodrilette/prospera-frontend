@@ -3,11 +3,11 @@ import { Montserrat } from "next/font/google"
 import { Fade } from "react-awesome-reveal"
 
 import { BiggerTitle } from "../../common/text/bigger-title"
-import { Text } from "../../common/text"
 import fieldBg from "../../../public/images/field-bg.jpg"
 import { useEffect, useRef } from "react"
 import { LinkButton } from "../../common/link-button"
 import { ScreenSection } from "../../layout/screen-section"
+import { Text } from "../../common/text/text"
 
 const montserrat = Montserrat({
   weight: "400",
@@ -51,7 +51,7 @@ export function Banner() {
             </BiggerTitle>
           </Fade>
           <Fade duration={700}>
-            <Text className="text-white">
+            <Text className="text-white md:text-center mt-3 md:mt-5 md:text-xl">
               The first descentralized agricultural futures market
             </Text>
           </Fade>

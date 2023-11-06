@@ -2,6 +2,7 @@ import Image from "next/image"
 import logo from "../../public/favicon.ico"
 import { useState } from "react"
 import { Container7XL } from "../common/container-7xl"
+import Link from "next/link"
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -11,12 +12,12 @@ export function Header() {
       <header>
         <nav className="border-gray-200 bg-gray-50">
           <div className="flex flex-wrap items-center justify-between">
-            <a href="https://flowbite.com/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image src={logo} className="h-8 w-8" alt="FlowBite Logo" />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Prospera
               </span>
-            </a>
+            </Link>
             <button
               onClick={() => setOpen(!open)}
               data-collapse-toggle="navbar-hamburger"
