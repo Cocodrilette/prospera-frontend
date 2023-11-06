@@ -11,8 +11,8 @@ import { isValidEmail } from "../../../utils/validation/is-valid-email"
 import { isValidPassword } from "../../../utils/validation/is-valid-password"
 import { AiOutlineLoading } from "react-icons/ai"
 import { useServer } from "../../../components/hooks/server"
-import { useAuthStore } from "../../../store/auth"
 import { useRouter } from "next/router"
+import { useAuth } from "../../../components/hooks/auth"
 
 interface AuthInput {
   isValid: boolean
@@ -30,7 +30,7 @@ const Login: NextPage = () => {
   const router = useRouter()
 
   const { post, error } = useServer()
-  const { setIsAuth, setToken, setUser, getStatus } = useAuthStore()
+  const { setIsAuth, setToken, setUser, getStatus } = useAuth()
 
   const [isSubmitionCompleted, setIsSubmitionCompleted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)

@@ -10,6 +10,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi"
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
 
 import { constants } from "../config/constants"
+import { AuthProvider } from "../components/hooks/auth"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -41,7 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         <SWRConfig>
-          <Component {...pageProps} />
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
           <Analytics />
         </SWRConfig>
       </RainbowKitProvider>

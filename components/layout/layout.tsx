@@ -1,9 +1,9 @@
 import Head from "next/head"
 import { AppFooter } from "./footer/footer"
 import { Main } from "./main"
-import { useAuthStore } from "../../store/auth"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+import { useAuth } from "../hooks/auth"
 
 type HeaderOptions = {
   title: string
@@ -24,16 +24,11 @@ export function Layout({
   headerOptions,
 }: LayoutType) {
   const router = useRouter()
-  const { getStatus } = useAuthStore()
+  const { isAuth } = useAuth()
 
   useEffect(() => {
-    async function checkAuth() {
-      const isAuth = await getStatus()
-      // if (isProtected && isAuth) router.push("/auth/login")
-    }
-
-    checkAuth()
-  }, [])
+    if (isProtected && !isAuth) router.push("/auth/login")
+  }, [isAuth])
 
   return (
     <>
