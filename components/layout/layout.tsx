@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Footer } from "./footer"
+import { AppFooter } from "./footer/footer"
 import { Main } from "./main"
 import { useAuthStore } from "../../store/auth"
 import { useRouter } from "next/router"
@@ -13,10 +13,16 @@ type HeaderOptions = {
 type LayoutType = {
   isProtected?: boolean
   children?: React.ReactNode
+  header?: React.ReactNode
   headerOptions?: HeaderOptions
 }
 
-export function Layout({ isProtected, children, headerOptions }: LayoutType) {
+export function Layout({
+  isProtected,
+  children,
+  header,
+  headerOptions,
+}: LayoutType) {
   const router = useRouter()
   const { isAuth } = useAuthStore()
 
@@ -31,10 +37,11 @@ export function Layout({ isProtected, children, headerOptions }: LayoutType) {
         <meta content={headerOptions?.description || ""} name="description" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-
-      <Main>{children}</Main>
-
-      <Footer />
+      <div>
+        {header ? header : <></>}
+        <Main>{children}</Main>
+        <AppFooter />
+      </div>
     </>
   )
 }
