@@ -24,11 +24,16 @@ export function Layout({
   headerOptions,
 }: LayoutType) {
   const router = useRouter()
-  const { isAuth } = useAuthStore()
+  const { getStatus } = useAuthStore()
 
   useEffect(() => {
-    if (isProtected && !isAuth) router.push("/auth/login")
-  }, [isAuth, isProtected, router])
+    async function checkAuth() {
+      const isAuth = await getStatus()
+      // if (isProtected && isAuth) router.push("/auth/login")
+    }
+
+    checkAuth()
+  }, [])
 
   return (
     <>

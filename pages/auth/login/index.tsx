@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, Label, TextInput } from "flowbite-react"
 
 import { H1 } from "../../../components/common/text/h1"
@@ -30,7 +30,7 @@ const Login: NextPage = () => {
   const router = useRouter()
 
   const { post, error } = useServer()
-  const { setIsAuth, setToken, setUser } = useAuthStore()
+  const { setIsAuth, setToken, setUser, getStatus } = useAuthStore()
 
   const [isSubmitionCompleted, setIsSubmitionCompleted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -66,7 +66,7 @@ const Login: NextPage = () => {
     }
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const data = {
@@ -76,27 +76,36 @@ const Login: NextPage = () => {
 
     setIsSubmitting(true)
 
-    post("/auth/login", data)
-      .then((response) => {
-        if (
-          response &&
-          response.data &&
-          response.data.access_token &&
-          response.data.user
-        ) {
-          setToken(response.data.access_token)
-          setUser(response.data.user)
-          setIsAuth(true)
-          router.push("/app")
-        }
-      })
-      .catch(() => {
-        console.log(error)
-      })
-      .finally(() => {
-        setIsSubmitting(false)
-      })
+    try {
+      const response = await post("/auth/login", data)
+
+      if (
+        response &&
+        response.data &&
+        response.data.accessToken &&
+        response.data.user
+      ) {
+        setToken(response.data.accessToken)
+        setUser(response.data.user)
+        setIsAuth(true)
+        router.push("/app")
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
+
+  useEffect(() => {
+    async function checkAuth() {
+      const isAuth = await getStatus()
+      console.log(isAuth)
+      if (isAuth) return router.push("/app")
+    }
+
+    checkAuth()
+  }, [])
 
   return (
     <Layout

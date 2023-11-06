@@ -4,11 +4,13 @@ import { Header } from "../../components/layout/header"
 import { Container7XL } from "../../components/common/container-7xl"
 import { H1 } from "../../components/common/text/h1"
 import { useAuthStore } from "../../store/auth"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
 
-const Login: NextPage = () => {
+const App: NextPage = () => {
+  const router = useRouter()
+
   const { user } = useAuthStore()
-
-  console.log({ user })
 
   return (
     <Layout
@@ -23,4 +25,4 @@ const Login: NextPage = () => {
   )
 }
 
-export default Login
+export default App
