@@ -15,7 +15,7 @@ export function Header() {
   return (
     <Container7XL>
       <header>
-        <nav className="border-gray-200 bg-gray-50">
+        <nav className="border-gray-200 bg-gray-50 shadow-md rounded-md p-2">
           <div className="flex flex-wrap items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <Image src={logo} className="h-8 w-8" alt="FlowBite Logo" />
@@ -54,36 +54,36 @@ export function Header() {
             >
               <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="block py-2 pl-3 pr-4 text-white bg-gray-900 hover:bg-black rounded"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/app"
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100"
                   >
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/app/profile"
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100"
                   >
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/contact"
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100">
                   {mounted ? (
