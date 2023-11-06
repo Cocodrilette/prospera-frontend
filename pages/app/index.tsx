@@ -9,6 +9,7 @@ const Login: NextPage = () => {
     <Layout
       headerOptions={{ title: "Home", description: "Home" }}
       header={<Header />}
+      isProtected={true}
     >
       <Container7XL className="min-h-[calc(100vh-35vh)] p-auto">
         <H1>App</H1>
