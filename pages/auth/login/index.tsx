@@ -19,7 +19,7 @@ const Login: NextPage = () => {
   const router = useRouter()
 
   const { post, error } = useServer()
-  const { setIsAuth, setToken } = useAuthStore()
+  const { setIsAuth, setToken, setUser } = useAuthStore()
 
   const [isSubmitionCompleted, setIsSubmitionCompleted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -67,8 +67,14 @@ const Login: NextPage = () => {
 
     post("/auth/login", data)
       .then((response) => {
-        if (response && response.data && response.data.access_token) {
+        if (
+          response &&
+          response.data &&
+          response.data.access_token &&
+          response.data.user
+        ) {
           setToken(response.data.access_token)
+          setUser(response.data.user)
           setIsAuth(true)
           router.push("/app")
         }
