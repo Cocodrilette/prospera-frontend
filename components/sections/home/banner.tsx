@@ -91,7 +91,7 @@ export function Banner() {
           <Fade direction="up" duration={500}>
             <LinkButton
               href="/app"
-              className="text-sm md:text-md bg-white text-black"
+              className="text-sm md:text-md bg-white text-black font-semibold"
               onClick={() => {
                 descentralizationSection.current?.scrollIntoView({
                   behavior: "smooth",
