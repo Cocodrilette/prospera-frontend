@@ -11,8 +11,16 @@ import { Container7XL } from "../../../components/common/container-7xl"
 import { isValidEmail } from "../../../utils/validation/is-valid-email"
 import { isValidPassword } from "../../../utils/validation/is-valid-password"
 import { AiOutlineLoading } from "react-icons/ai"
+import { useServer } from "../../../components/hooks/server"
+import { useAuthStore } from "../../../store/auth"
+import { useRouter } from "next/router"
 
 const Login: NextPage = () => {
+  const router = useRouter()
+
+  const { post, error } = useServer()
+  const { setIsAuth, setToken } = useAuthStore()
+
   const [isSubmitionCompleted, setIsSubmitionCompleted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [email, setEmail] = useState<Email | undefined>({
@@ -47,6 +55,32 @@ const Login: NextPage = () => {
     }
   }
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const data = {
+      email: email?.email,
+      password: password?.password,
+    }
+
+    setIsSubmitting(true)
+
+    post("/auth/login", data)
+      .then((response) => {
+        if (response && response.data && response.data.access_token) {
+          setToken(response.data.access_token)
+          setIsAuth(true)
+          router.push("/app")
+        }
+      })
+      .catch(() => {
+        console.log(error)
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+      })
+  }
+
   return (
     <Layout
       headerOptions={{ title: "Home", description: "Home" }}
@@ -54,7 +88,10 @@ const Login: NextPage = () => {
     >
       <Container7XL className="min-h-[calc(100vh-35vh)] p-auto">
         <Card>
-          <form className="flex max-w-md flex-col gap-4">
+          <form
+            onSubmit={handleSubmit}
+            className="flex max-w-md flex-col gap-4"
+          >
             <H1 className="mb-5 md:mb-10">
               Login <span className="text-gray-400">to your account</span>
             </H1>
