@@ -12,23 +12,21 @@ const Payment: NextPage = () => {
   const { isConnected } = useAccount()
   const [domLoaded, setDomLoaded] = useState(false)
 
-  useEffect(() => {
-    setDomLoaded(true)
-  }, [])
+  useEffect(() => setDomLoaded(true), [])
 
   return (
-    <Layout headerOptions={{ title: "Payment", description: "Payment" }}>
+    <Layout
+      headerOptions={{ title: "Payment", description: "Payment" }}
+      isProtected={true}
+    >
       <div className="flex justify-end p-2 md:p-5">
         <LinkButton className="bg-black" href="/">
           Back to Home
         </LinkButton>
       </div>
       <div className="flex flex-col justify-center items-center mx-2 md:min-w-[600px]">
-        {!domLoaded ? (
-          <LoadingCard className="w-full" />
-        ) : (
-          <>{isConnected ? <PaymentModule /> : <ConnectYourWallet />}</>
-        )}
+        {!domLoaded && <LoadingCard />}
+        {domLoaded && (isConnected ? <PaymentModule /> : <ConnectYourWallet />)}
       </div>
     </Layout>
   )
