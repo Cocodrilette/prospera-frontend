@@ -37,7 +37,7 @@ export function BuyOurToken() {
           <div className="flex flex-col items-center justify-center gap-10">
             <PriceReference />{" "}
             <Link
-              href="/buy-cielo"
+              href="/app/buy-cielo"
               className="text-xl bg-indigo-600 text-white py-2 px-10 font-bold rounded-full"
             >
               Buy now

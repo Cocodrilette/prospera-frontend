@@ -34,8 +34,8 @@ export function PaymentModule() {
   }, [conditionsAccepted])
 
   return (
-    <ScreenSection className="flex flex-col mx-2 my-5 md:my-20 md:max-w-2xl">
-      <div className="flex flex-col mb-10">
+    <ScreenSection className="flex flex-col mx-2 md:max-w-2xl">
+      <div className="flex flex-col">
         <div>
           <p className="text-5xl md:text-6xl font-extrabold text-gray-400">
             You will receive{" "}
