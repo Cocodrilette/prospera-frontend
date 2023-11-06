@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import { useState } from "react"
 import { Card, Label, TextInput } from "flowbite-react"
 
-import { Email, Password } from "../types"
 import { H1 } from "../../../components/common/text/h1"
 import { Layout } from "../../../components/layout/layout"
 import { Header } from "../../../components/layout/header"
@@ -14,6 +13,18 @@ import { AiOutlineLoading } from "react-icons/ai"
 import { useServer } from "../../../components/hooks/server"
 import { useAuthStore } from "../../../store/auth"
 import { useRouter } from "next/router"
+
+interface AuthInput {
+  isValid: boolean
+}
+
+interface Email extends AuthInput {
+  email: string | undefined
+}
+
+interface Password extends AuthInput {
+  password: string | undefined
+}
 
 const Login: NextPage = () => {
   const router = useRouter()
