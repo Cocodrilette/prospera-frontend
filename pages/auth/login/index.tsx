@@ -65,6 +65,8 @@ const Login: NextPage = () => {
 
     if (email?.isValid && password?.isValid) {
       setIsSubmitionCompleted(true)
+    } else {
+      setIsSubmitionCompleted(false)
     }
   }
 
@@ -163,7 +165,7 @@ const Login: NextPage = () => {
               )}
             </div>
             <Button
-              disabled={!isSubmitionCompleted && isSubmitting}
+              disabled={!isSubmitionCompleted || isSubmitting}
               type="submit"
               className="mt-4 peer-hover:bg-black disabled:opacity-50"
             >

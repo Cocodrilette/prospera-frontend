@@ -1,8 +1,7 @@
 import { NextPage } from "next"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, Label, TextInput } from "flowbite-react"
 
-import { Email, Name, Password } from "../types"
 import { H1 } from "../../../components/common/text/h1"
 import { Layout } from "../../../components/layout/layout"
 import { Header } from "../../../components/layout/header"
@@ -16,13 +15,20 @@ import { useRouter } from "next/router"
 import { InternalLink } from "../../../components/common/internal-link"
 import { Text } from "../../../components/common/text"
 import { isValidName } from "../../../utils/validation/is-valid-name"
+import { useAuth } from "../../../components/hooks/auth"
+import { Age, Email, Name, Password } from "../../../types/auth.types"
+import { useAccount } from "wagmi"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { isValidAge } from "../../../utils/validation/is-valid-age"
 
 const Register: NextPage = () => {
   const router = useRouter()
 
   const { post, error } = useServer()
   const { setIsAuth, setToken, setUser } = useAuth()
+  const { address } = useAccount()
 
+  const [isMounted, setIsMounted] = useState(false)
   const [isSubmitionCompleted, setIsSubmitionCompleted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [name, setName] = useState<Name | undefined>({
@@ -37,10 +43,14 @@ const Register: NextPage = () => {
     password: undefined,
     isValid: true,
   })
+  const [age, setAge] = useState<Age | undefined>({
+    age: undefined,
+    isValid: true,
+  })
 
   function handleInputChange(
     event: React.ChangeEvent<HTMLInputElement>,
-    type: "email" | "password" | "name"
+    type: "email" | "password" | "name" | "address" | "age"
   ) {
     if (type === "email") {
       if (isValidEmail(event.target.value)) {
@@ -54,16 +64,30 @@ const Register: NextPage = () => {
       } else {
         setPassword({ password: event.target.value, isValid: false })
       }
-    } else {
+    } else if (type === "name") {
       if (isValidName(event.target.value)) {
         setName({ name: event.target.value, isValid: true })
       } else {
         setName({ name: event.target.value, isValid: false })
       }
+    } else if (type === "age") {
+      if (isValidAge(event.target.value)) {
+        setAge({ age: Number(event.target.value), isValid: true })
+      } else {
+        setAge({ age: Number(event.target.value), isValid: false })
+      }
     }
 
-    if (email?.isValid && password?.isValid && name?.isValid) {
+    if (
+      address &&
+      email?.isValid &&
+      password?.isValid &&
+      name?.isValid &&
+      age?.isValid
+    ) {
       setIsSubmitionCompleted(true)
+    } else {
+      setIsSubmitionCompleted(false)
     }
   }
 
@@ -74,23 +98,17 @@ const Register: NextPage = () => {
       email: email?.email,
       password: password?.password,
       name: name?.name,
+      address,
+      age: Number(age?.age),
     }
 
     setIsSubmitting(true)
 
-    post("/auth/login", data)
+    post("/auth/register", data)
       .then((response) => {
-        if (
-          response &&
-          response.data &&
-          response.data.access_token &&
-          response.data.user
-        ) {
-          setToken(response.data.access_token)
-          setUser(response.data.user)
-          setIsAuth(true)
-          router.push("/app")
-        }
+        console.log({ response })
+        if (response && response.data && response.data.success)
+          router.push("/auth/login")
       })
       .catch(() => {
         console.log(error)
@@ -99,6 +117,8 @@ const Register: NextPage = () => {
         setIsSubmitting(false)
       })
   }
+
+  useEffect(() => setIsMounted(true), [])
 
   return (
     <Layout
@@ -119,7 +139,7 @@ const Register: NextPage = () => {
                 <Label htmlFor="name1" value="Your name" />
               </div>
               <TextInput
-                value={email?.email}
+                value={name?.name}
                 onChange={(event) => handleInputChange(event, "name")}
                 id="name1"
                 type="text"
@@ -129,6 +149,25 @@ const Register: NextPage = () => {
               />
               {!name?.isValid && (
                 <p className="text-red-500 text-sm">Invalid Name</p>
+              )}
+            </div>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="age1" value="Your age" />
+              </div>
+              <TextInput
+                value={age?.age}
+                onChange={(event) => handleInputChange(event, "age")}
+                id="age1"
+                type="number"
+                placeholder="18"
+                helperText
+                required
+              />
+              {!age?.isValid && (
+                <p className="text-red-500 text-sm">
+                  Invalid Age. You must be at least 18 years old
+                </p>
               )}
             </div>
             <div>
@@ -174,24 +213,27 @@ const Register: NextPage = () => {
               <div className="mb-2 block">
                 <Label htmlFor="ethAddress" value="Your Ethereum Address" />
               </div>
-              <TextInput
-                value={password?.password}
-                onChange={(event) => handleInputChange(event, "password")}
-                id="ethAddress"
-                type="text"
-                placeholder="0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245"
-                required
-              />
-              {!password?.isValid && (
-                <p className="text-red-500 text-sm">
-                  Password must be at least 8 characters long and contain at
-                  least one uppercase letter, one lowercase letter, one number
-                  and one special character
-                </p>
+              {!isMounted && (
+                <span className="flex justify-between items-center">
+                  <AiOutlineLoading className="animate-spin" /> Loading...
+                </span>
+              )}
+              {isMounted && address ? (
+                <TextInput
+                  value={address}
+                  onChange={(event) => handleInputChange(event, "address")}
+                  id="ethAddress"
+                  type="text"
+                  placeholder="0xe7804c37c13166fF0b37F5aE0BB07A3aEbb6e245"
+                  disabled
+                  required
+                />
+              ) : (
+                <ConnectButton />
               )}
             </div>
             <Button
-              disabled={!isSubmitionCompleted && isSubmitting}
+              disabled={!isSubmitionCompleted || isSubmitting}
               type="submit"
               className="mt-4 peer-hover:bg-black disabled:opacity-50"
             >
