@@ -1,11 +1,16 @@
 import Image from "next/image"
 import logo from "../../public/favicon.ico"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Container7XL } from "../common/container-7xl"
 import Link from "next/link"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { AiOutlineLoading } from "react-icons/ai"
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   return (
     <Container7XL>
@@ -51,8 +56,7 @@ export function Header() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded"
-                    aria-current={undefined}
+                    className="block py-2 pl-3 pr-4 text-white bg-gray-900 hover:bg-black rounded"
                   >
                     Home
                   </a>
@@ -62,7 +66,7 @@ export function Header() {
                     href="#"
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100"
                   >
-                    Services
+                    Dashboard
                   </a>
                 </li>
                 <li>
@@ -70,7 +74,7 @@ export function Header() {
                     href="#"
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100"
                   >
-                    Pricing
+                    Profile
                   </a>
                 </li>
                 <li>
@@ -80,6 +84,15 @@ export function Header() {
                   >
                     Contact
                   </a>
+                </li>
+                <li className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100">
+                  {mounted ? (
+                    <ConnectButton />
+                  ) : (
+                    <span className="flex justify-between items-center">
+                      <AiOutlineLoading className="animate-spin" />
+                    </span>
+                  )}
                 </li>
               </ul>
             </div>
