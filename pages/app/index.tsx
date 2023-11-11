@@ -26,8 +26,6 @@ const App: NextPage = () => {
     }
   })
 
-  console.log(data)
-
   const { user, isLoaded, isSignedIn } = useUser()
   const { set } = useStorage()
   const { post } = useServer()
