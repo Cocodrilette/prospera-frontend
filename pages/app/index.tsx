@@ -14,7 +14,6 @@ const App: NextPage = () => {
   const { post } = useServer()
 
   async function sendUserData(userData: any) {
-    console.log("sendUserData")
     const res = await post(`/auth/user`, userData)
 
     if (res?.data?.accessToken) {
@@ -24,7 +23,6 @@ const App: NextPage = () => {
   }
 
   useEffect(() => {
-    console.log({ user })
     if (user?.id) {
       console.log("user?.id")
       const userData = {
@@ -33,8 +31,6 @@ const App: NextPage = () => {
         clerkId: user?.id,
         email: user?.emailAddresses[0]?.emailAddress,
       }
-
-      console.log({ userData })
 
       sendUserData(userData)
     }

@@ -90,8 +90,6 @@ export const useServer = (): ServerHook => {
   ): Promise<ServerResponse> => {
     const data = await response.json()
 
-    console.log({ data })
-
     if (!response.ok) {
       setError(data)
       return { data: null, error: data }
