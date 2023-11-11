@@ -6,7 +6,9 @@ export function Container7XL({
   className?: string
 }) {
   return (
-    <div className={`p-5 md:max-w-7xl mx-auto sm:px-6 lg:px-8 ${className}`}>
+    <div
+      className={`relative p-5 md:max-w-7xl mx-auto sm:px-6 lg:px-8 ${className}`}
+    >
       {children}
     </div>
   )

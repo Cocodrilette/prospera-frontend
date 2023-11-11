@@ -28,7 +28,7 @@ export function DiscoverCard({
         </p>
         <a
           href={`#${pointsTo}`}
-          className="flex items-center justify-center p-5 bg-gray-900 opacity-50 hover:opacity-100 transition-opacity w-full"
+          className="flex items-center justify-center p-5 hover:bg-gray-900 text-gray-500 hover:text-white transition-all w-full"
         >
           <SlArrowDown />
         </a>
