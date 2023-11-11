@@ -37,19 +37,6 @@ export const useServer = (): ServerHook => {
     "x-api-key": apiKey,
   }
 
-  const handleResponse = async (
-    response: Response
-  ): Promise<ServerResponse> => {
-    const data = await response.json()
-
-    if (!response.ok) {
-      setError(data)
-      return { data: null, error: data }
-    }
-
-    return { data, error: null }
-  }
-
   const get = async (url: string): Promise<ServerResponse | undefined> => {
     return await executeOrCatch(
       () => fetch(`${serverBaseUrl}${url}`, { method: "GET", headers }),
@@ -96,6 +83,21 @@ export const useServer = (): ServerHook => {
       handleResponse,
       setError
     )
+  }
+
+  const handleResponse = async (
+    response: Response
+  ): Promise<ServerResponse> => {
+    const data = await response.json()
+
+    console.log({ data })
+
+    if (!response.ok) {
+      setError(data)
+      return { data: null, error: data }
+    }
+
+    return { data, error: null }
   }
 
   return { get, post, patch, delete: del, error }

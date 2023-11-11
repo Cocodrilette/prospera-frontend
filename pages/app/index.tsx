@@ -6,13 +6,27 @@ import { H1 } from "../../components/common/text/h1"
 import { useUser } from "@clerk/nextjs"
 import { useEffect } from "react"
 import { useServer } from "../../components/hooks/server"
+import { useStorage } from "../../components/hooks/storage"
 
 const App: NextPage = () => {
-  const { user } = useUser()
+  const { user, isLoaded, isSignedIn } = useUser()
+  const { set } = useStorage()
   const { post } = useServer()
 
+  async function sendUserData(userData: any) {
+    console.log("sendUserData")
+    const res = await post(`/auth/user`, userData)
+
+    if (res?.data?.accessToken) {
+      set("accessToken", res?.data?.accessToken)
+      set("user", res?.data?.user)
+    }
+  }
+
   useEffect(() => {
+    console.log({ user })
     if (user?.id) {
+      console.log("user?.id")
       const userData = {
         address: user?.web3Wallets[0]?.web3Wallet,
         name: user?.fullName,
@@ -20,9 +34,11 @@ const App: NextPage = () => {
         email: user?.emailAddresses[0]?.emailAddress,
       }
 
-      post(`/auth/user`, userData)
+      console.log({ userData })
+
+      sendUserData(userData)
     }
-  }, [user])
+  }, [user, isLoaded, isSignedIn])
 
   return (
     <Layout
