@@ -10,7 +10,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi"
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
 
 import { constants } from "../config/constants"
-import { AuthProvider } from "../components/hooks/auth"
+import { ClerkProvider } from "@clerk/nextjs"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -38,14 +38,14 @@ const wagmiConfig = createConfig({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
-        <SWRConfig>
-          <AuthProvider>
+      <ClerkProvider>
+        <RainbowKitProvider chains={chains}>
+          <SWRConfig>
             <Component {...pageProps} />
-          </AuthProvider>
-          <Analytics />
-        </SWRConfig>
-      </RainbowKitProvider>
+            <Analytics />
+          </SWRConfig>
+        </RainbowKitProvider>
+      </ClerkProvider>
     </WagmiConfig>
   )
 }

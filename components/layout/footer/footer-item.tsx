@@ -6,12 +6,11 @@ interface Item {
 interface FooterItemProps {
   title: string
   items: Item[]
-  key: string
 }
 
-export function FooterItem({ title, items, key }: FooterItemProps) {
+export function FooterItem({ title, items }: FooterItemProps) {
   return (
-    <div id={key} key={key}>
+    <div>
       <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
         {title}
       </h2>

@@ -1,9 +1,6 @@
 import Head from "next/head"
 import { AppFooter } from "./footer/footer"
 import { Main } from "./main"
-import { useRouter } from "next/router"
-import { useEffect } from "react"
-import { useAuth } from "../hooks/auth"
 
 type HeaderOptions = {
   title: string
@@ -11,25 +8,12 @@ type HeaderOptions = {
 }
 
 type LayoutType = {
-  isProtected?: boolean
   children?: React.ReactNode
   header?: React.ReactNode
   headerOptions?: HeaderOptions
 }
 
-export function Layout({
-  isProtected,
-  children,
-  header,
-  headerOptions,
-}: LayoutType) {
-  const router = useRouter()
-  const { isAuth } = useAuth()
-
-  useEffect(() => {
-    if (isProtected && !isAuth) router.push("/auth/login")
-  }, [isAuth])
-
+export function Layout({ children, header, headerOptions }: LayoutType) {
   return (
     <>
       <Head>

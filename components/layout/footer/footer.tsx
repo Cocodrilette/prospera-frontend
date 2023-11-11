@@ -7,7 +7,7 @@ import Link from "next/link"
 export const AppFooter = () => {
   return (
     <Container7XL>
-      <footer className="border-gray-200 bg-gray-50 shadow-md rounded-md p-2">
+      <footer className="border-gray-200 bg-gray-50 shadow-md rounded-md p-3">
         <div>
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">

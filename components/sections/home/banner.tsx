@@ -61,7 +61,7 @@ export function Banner() {
           <Fade direction="up" duration={500}>
             <LinkButton
               href="#discover"
-              className="text-sm md:text-md"
+              className="text-sm md:text-md text-white"
               onClick={() => {
                 descentralizationSection.current?.scrollIntoView({
                   behavior: "smooth",
@@ -76,7 +76,7 @@ export function Banner() {
           <Fade direction="up" duration={500}>
             <LinkButton
               href="#buy-cielo"
-              className="text-sm md:text-md"
+              className="text-sm md:text-md text-white"
               onClick={() => {
                 descentralizationSection.current?.scrollIntoView({
                   behavior: "smooth",
