@@ -24,7 +24,6 @@ const App: NextPage = () => {
 
   useEffect(() => {
     if (user?.id) {
-      console.log("user?.id")
       const userData = {
         address: user?.web3Wallets[0]?.web3Wallet,
         name: user?.fullName,
