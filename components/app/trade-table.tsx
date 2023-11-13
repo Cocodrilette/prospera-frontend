@@ -1,13 +1,14 @@
 import { Table } from "flowbite-react"
 import { H3 } from "../common/text/h3"
 import { Button } from "../common/button"
+import { H2 } from "../common/text/h2"
 
 export function TradeTable({ className }: { className?: string }) {
   return (
     <section
       className={`rounded-md overflow-y-scroll  flex flex-col justify-between gap-4 max-h-[600px] ${className}`}
     >
-      <H3>Table</H3>
+      <H2>Active Orders</H2>
       <div className="inline-flex items-center justify-between sticky top-0 z-10 bg-white py-2">
         <div>
           <a

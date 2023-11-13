@@ -11,7 +11,7 @@ import { useServer } from "../../components/hooks/server"
 import { useStorage } from "../../components/hooks/storage"
 import { TradeTable } from "../../components/app/trade-table"
 import { AppBanner } from "../../components/app/banner"
-import { CieloData } from "../../components/app/cielo-data"
+import { CieloData } from "../../components/app/cielo-data-card/cielo-data"
 import { AppCard } from "../../components/app/card"
 import LoadingChart from "../../components/common/loading-chart"
 

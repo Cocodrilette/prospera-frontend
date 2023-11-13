@@ -1,6 +1,7 @@
 type StorageHook = {
   set: (key: string, value: any) => void
   get: (key: string) => any
+  getUser: () => any
 }
 
 export const useStorage = (): StorageHook => {
@@ -9,12 +10,19 @@ export const useStorage = (): StorageHook => {
   }
 
   function get(key: string) {
-    const value = window.localStorage.getItem(key)
+    let value = null
+    value = window.localStorage.getItem(key)
+
     return value ? JSON.parse(value) : null
+  }
+
+  function getUser() {
+    return get("user")
   }
 
   return {
     set,
     get,
+    getUser,
   }
 }
