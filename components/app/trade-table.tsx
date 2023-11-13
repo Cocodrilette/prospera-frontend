@@ -21,7 +21,7 @@ export function TradeTable({ className }: { className?: string }) {
       endDate.setMonth(endDate.getMonth() + 6 + Math.floor(Math.random() * 6)) // add a random number of months between 6 and 11
 
       return {
-        name: productsNames[i % productsNames.length],
+        name: productsNames[i % productsNames.length].toUpperCase(),
         productCode: productsCodes[i % productsCodes.length],
         advance: Math.floor(Math.random() * 10000) + 1000,
         price: price,
@@ -34,10 +34,7 @@ export function TradeTable({ className }: { className?: string }) {
   )
 
   function formatMoney(number: number) {
-    return number.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    })
+    return number.toLocaleString("en-US")
   }
 
   function formatWeigth(number: number) {
@@ -76,8 +73,10 @@ export function TradeTable({ className }: { className?: string }) {
           <Table.HeadCell className="bg-gray-100">Open Date</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100">Close Date</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100">Product Code</Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Advance</Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Price</Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">
+            Advance (CIELO)
+          </Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">Price (CIELO)</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100">Amount (kg)</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100"></Table.HeadCell>
         </Table.Head>
@@ -117,11 +116,15 @@ export function TradeTable({ className }: { className?: string }) {
                   <Table.Cell className="font-bold">
                     {item.productCode}
                   </Table.Cell>
-                  <Table.Cell>{formatMoney(item.advance)}</Table.Cell>
-                  <Table.Cell className="font-bold">
+                  <Table.Cell className="font-mono">
+                    {formatMoney(item.advance)}
+                  </Table.Cell>
+                  <Table.Cell className="font-bold font-mono">
                     {formatMoney(item.price)}
                   </Table.Cell>
-                  <Table.Cell>{formatWeigth(item.amountInKg)}</Table.Cell>
+                  <Table.Cell className="font-mono">
+                    {formatWeigth(item.amountInKg)}
+                  </Table.Cell>
                   <Table.Cell>
                     <button className="px-2 py-1 bg-green-400 text-black font-semibold rounded-lg">
                       Open
