@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
+import { ToastContainer, toast } from "react-toastify"
 
 import { PayPalProvider } from "../providers/paypal-provider"
 import { ScreenSection } from "../layout/screen-section"
 import { TermsSheetCheckbox } from "./terms-sheet-checkbox"
 import { ExternalLink } from "./external-link"
 import { constants } from "../../config/constants"
+import { useRouter } from "next/router"
 
 export function PaymentModule() {
+  const router = useRouter()
+
   const [amount, setAmount] = useState(10)
   const [showPaypal, setShowPaypal] = useState(false)
   const [cieloAmount, setCieloAmount] = useState(amount) // [cielo]
@@ -27,6 +31,18 @@ export function PaymentModule() {
   function onPaymentSuccess() {
     setShowPaypal(false)
     setConditionsAccepted(false)
+
+    toast.success("Payment successful ✅", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+    })
+
+    setTimeout(() => {
+      router.push("/app")
+    }, 3000)
   }
 
   useEffect(() => {
@@ -91,6 +107,7 @@ export function PaymentModule() {
           onPaymentSuccess={onPaymentSuccess}
         />
       </div>
+      <ToastContainer />
     </ScreenSection>
   )
 }

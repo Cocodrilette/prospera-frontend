@@ -36,6 +36,7 @@ export function CieloData({ className }: { className?: string }) {
   useEffect(() => {
     if (userAddress) {
       getBalance()
+      console.log({ userBalance })
     }
   }, [userAddress])
 
@@ -45,7 +46,7 @@ export function CieloData({ className }: { className?: string }) {
     <AppCard
       className={`${className} flex flex-col items-center justify-between p-5`}
     >
-      {mounted && userBalance ? (
+      {mounted && userBalance !== undefined ? (
         <div className="flex flex-col my-auto">
           <H1 className="text-gray-900 text-4xl md:text-5xl lg:text-6xl">
             {userBalance}
