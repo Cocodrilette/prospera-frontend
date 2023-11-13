@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { shortAddress } from "../../utils/address"
-import { BiCopy } from "react-icons/bi"
+import { BiCopy, BiLinkExternal } from "react-icons/bi"
 
 export function UserAddress({ address }: { address: string }) {
   const [clicked, setClicked] = useState<boolean>(false)
@@ -24,16 +24,28 @@ export function UserAddress({ address }: { address: string }) {
       >
         {shortAddress(address)}
       </p>
-      <button
-        className={`border-l-2 p-2 ${
-          clicked ? "border-green-300" : ""
-        } transition-colors`}
-        onClick={copyAddress}
-      >
-        <BiCopy
-          className={`${clicked ? "text-green-300" : ""} transition-colors`}
-        />
-      </button>
+      <div className="flex">
+        <button
+          className={`border-l-2 p-2 ${
+            clicked ? "border-green-300" : ""
+          } transition-colors`}
+          onClick={copyAddress}
+        >
+          <BiCopy
+            className={`${clicked ? "text-green-300" : ""} transition-colors`}
+          />
+        </button>
+        <a
+          href={`https://testnet-zkevm.polygonscan.com/address/${address}`}
+          rel="noreferrer"
+          target="_blank"
+          className="border-l-2 p-2"
+        >
+          <BiLinkExternal
+            className={`${clicked ? "text-green-300" : ""} transition-colors`}
+          />
+        </a>
+      </div>
     </div>
   )
 }
