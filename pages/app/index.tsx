@@ -13,19 +13,9 @@ import { TradeTable } from "../../components/app/trade-table"
 import { AppBanner } from "../../components/app/banner"
 import { CieloData } from "../../components/app/cielo-data-card/cielo-data"
 import { AppCard } from "../../components/app/card"
-import LoadingChart from "../../components/common/loading-chart"
+import { NotificationCard } from "../../components/app/notifications-card"
 
 const App: NextPage = () => {
-  const data = Array.from({ length: 30 }, (_, i) => {
-    const date = new Date()
-    date.setDate(date.getDate() + i)
-
-    return {
-      day: date.getDate(),
-      price: Math.floor(Math.random() * 1000) + 100,
-    }
-  })
-
   const { user, isLoaded, isSignedIn } = useUser()
   const { set } = useStorage()
   const { post } = useServer()
@@ -67,41 +57,7 @@ const App: NextPage = () => {
           show={false}
         />
         <CieloData className="row-span-2 bg-slate-50" />
-        <AppCard className="row-span-2 bg-slate-50">
-          {isMounted ? (
-            <div>
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex items-end gap-2">
-                  <p
-                    className={`font-bold text-4xl ${
-                      data[data.length - 1].price > data[data.length - 2].price
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }`}
-                  >
-                    ${data[data.length - 1].price}
-                  </p>
-                  <p className="font-bold text-4xl">Corn</p>
-                </div>
-                <Badge className="text-xl" color="gray">
-                  ZCZ3
-                </Badge>
-              </div>
-              <LineChart
-                className="w-full p-0"
-                width={550}
-                height={150}
-                data={data}
-              >
-                <Line type="monotone" dataKey="price" stroke="#8884d8" />
-                {/* <YAxis dataKey={"price"} /> */}
-                <Tooltip />
-              </LineChart>
-            </div>
-          ) : (
-            <LoadingChart />
-          )}
-        </AppCard>
+        <NotificationCard className="row-span-2 " />
         <TradeTable className="row-span-6 md:col-span-2" />
       </Container7XL>
     </Layout>
