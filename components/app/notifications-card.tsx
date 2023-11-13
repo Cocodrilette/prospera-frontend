@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { AppCard } from "./card"
-import { H3 } from "../common/text/h3"
 import { LoadingBars } from "../common/loading-bars"
 import { H4 } from "../common/text/h4"
 
