@@ -26,7 +26,7 @@ export function CieloData({ className }: { className?: string }) {
     if (userAddress) {
       get(`/blockchain/balance/${userAddress}`).then((res) => {
         if (res && res.data) {
-          setUserBalance(res.data.rawBalance)
+          setUserBalance(res.data.balance)
         }
       })
     }
