@@ -14,6 +14,7 @@ import { AppBanner } from "../../components/app/banner"
 import { CieloData } from "../../components/app/cielo-data"
 import { AppCard } from "../../components/app/card"
 import LoadingChart from "../../components/common/loading-chart"
+import { H3 } from "../../components/common/text/h3"
 
 const App: NextPage = () => {
   const data = Array.from({ length: 30 }, (_, i) => {
@@ -61,46 +62,24 @@ const App: NextPage = () => {
       header={<Header />}
     >
       <Container7XL className="grid grid-cols-1 md:grid-cols-2 grid-rows-[12] gap-4 min-h-screen w-full">
-        <AppBanner
-          className="row-span-1 md:col-span-2"
-          message="Banner"
-          show={false}
-        />
+        <AppBanner className="row-span-1 md:col-span-2" show={true}>
+          ⚠️ This is not real data. This is just a demo.{" "}
+          <span className="font-semibold">
+            We will let you know when our platform is ready for real use.
+          </span>
+        </AppBanner>
         <CieloData className="row-span-2 bg-slate-50" />
-        <AppCard className="row-span-2 bg-slate-50">
-          {isMounted ? (
-            <div>
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex items-end gap-2">
-                  <p
-                    className={`font-bold text-4xl ${
-                      data[data.length - 1].price > data[data.length - 2].price
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }`}
-                  >
-                    ${data[data.length - 1].price}
-                  </p>
-                  <p className="font-bold text-4xl">Corn</p>
-                </div>
-                <Badge className="text-xl" color="gray">
-                  ZCZ3
-                </Badge>
-              </div>
-              <LineChart
-                className="w-full p-0"
-                width={550}
-                height={150}
-                data={data}
-              >
-                <Line type="monotone" dataKey="price" stroke="#8884d8" />
-                {/* <YAxis dataKey={"price"} /> */}
-                <Tooltip />
-              </LineChart>
+        <AppCard
+          className={`row-span-2 bg-gradient-to-tl from-gray-700 to-gray-900`}
+        >
+          <div className="flex flex-col gap-2">
+            <div className="inline-flex justify-between items-center">
+              <H3 className="text-white">Notifications</H3>
             </div>
-          ) : (
-            <LoadingChart />
-          )}
+            <div className="flex flex-col gap-2">
+              <p className="text-white">- Empty -</p>
+            </div>
+          </div>
         </AppCard>
         <TradeTable className="row-span-6 md:col-span-2" />
       </Container7XL>

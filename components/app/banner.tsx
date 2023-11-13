@@ -1,19 +1,19 @@
 export function AppBanner({
+  children,
   className,
-  message,
   show,
 }: {
+  children?: React.ReactNode
   className?: string
-  message: string
   show?: boolean
 }) {
   return (
     <section
-      className={`rounded-md shadow-md bg-gray-50 ${className} ${
+      className={`rounded-md shadow-md bg-yellow-100 p-5 ${className} ${
         show ? "" : "hidden"
       }`}
     >
-      <p>{message}</p>
+      {children}
     </section>
   )
 }
