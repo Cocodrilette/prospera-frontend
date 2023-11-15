@@ -61,7 +61,6 @@ export function PayPalProvider({
       fetch(constants.providers.paypal.authUrl, options)
         .then((response) => response.json())
         .then((result) => {
-          console.log({ token: result.access_token })
           setPaypalAuthToken(result.access_token)
           setIsLoading(false)
         })
@@ -174,8 +173,6 @@ export function PayPalProvider({
                       `/orders/complete/${orderData.id}`,
                       { method: "POST" }
                     )
-
-                    console.log({ response })
 
                     if (response?.error) {
                       console.error(response?.error)
