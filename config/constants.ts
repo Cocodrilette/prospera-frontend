@@ -1,3 +1,5 @@
+import { cieloConfig } from "./contracts/cielo"
+
 export const constants = {
   server: {
     baseUrl: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
@@ -20,5 +22,11 @@ export const constants = {
   },
   legal: {
     termsOfServiceUrl: process.env.NEXT_PUBLIC_TERMS_OF_SERVICE_URL || "",
+  },
+  contracts: {
+    cielo: {
+      address: cieloConfig.address,
+      abi: cieloConfig.abi,
+    },
   },
 }

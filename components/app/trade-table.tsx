@@ -8,7 +8,7 @@ export function TradeTable({ className }: { className?: string }) {
   const productsNames = ["Corn", "Soy", "Wheat", "Standard Corn"]
 
   const [mounted, setMounted] = useState(false)
-  const [data, setData] = useState(
+  const [data, _] = useState(
     Array.from({ length: 10 }, (_, i) => {
       const price = Math.floor(Math.random() * 100000) + 100001
       const amountInKg = parseFloat(

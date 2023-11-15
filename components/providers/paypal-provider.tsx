@@ -6,10 +6,11 @@ import { useEffect, useState } from "react"
 
 import { constants } from "../../config/constants"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
-import { useAccount } from "wagmi"
 import { MessageCard } from "../alerts/message-card"
 import LoadingCard from "../common/loading-card"
 import { Fade } from "react-awesome-reveal"
+import { useServer } from "../hooks/server"
+import { User } from "../../types/user.types"
 
 interface OrderDetails {
   amount: number
@@ -26,13 +27,15 @@ export function PayPalProvider({
   onPaymentSuccess,
   forceReRender,
 }: PayPalProviderProps) {
-  const userAccount = useAccount()
+  const { post } = useServer()
 
   const [message, setMessage] = useState("")
+  const [messageType, setMessageType] = useState<"error" | "success">("error")
   const [paypalAuthToken, setPaypalAuthToken] = useState<string | null>(null)
   const [localOrderDetails, setLocalOrderDetails] =
     useState<OrderDetails>(orderDetails)
   const [isLoading, setIsLoading] = useState(false)
+  const [userAddress, setUserAddress] = useState<string | null>(null)
 
   async function queryPayPalAuthToken() {
     if (!paypalAuthToken) {
@@ -58,7 +61,6 @@ export function PayPalProvider({
       fetch(constants.providers.paypal.authUrl, options)
         .then((response) => response.json())
         .then((result) => {
-          console.log({ token: result.access_token })
           setPaypalAuthToken(result.access_token)
           setIsLoading(false)
         })
@@ -77,27 +79,28 @@ export function PayPalProvider({
     setLocalOrderDetails(orderDetails)
   }, [orderDetails])
 
+  useEffect(() => {
+    let _user: string | null | User = window.localStorage.getItem("user")
+
+    if (_user && _user !== null) {
+      _user = JSON.parse(_user) as User
+      setUserAddress(_user.address)
+    }
+  }, [])
+
   const handler = async () => {
     try {
-      console.log({
-        userAddress: userAccount.address,
+      const body = {
+        userAddress: userAddress,
         tokensAmount: localOrderDetails.amount,
+      }
+
+      const response = await post("/orders", body, {
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
       })
 
-      const response = await fetch(`${constants.server.baseUrl}/orders`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${paypalAuthToken}`,
-          "Content-Type": "application/json",
-          Prefer: "return=representation",
-        },
-        body: JSON.stringify({
-          userAddress: userAccount.address,
-          tokensAmount: localOrderDetails.amount,
-        }),
-      })
-
-      const orderData = await response.json()
+      const orderData = response?.data
 
       if (orderData.orderID) {
         return orderData.orderID
@@ -131,7 +134,6 @@ export function PayPalProvider({
               }}
               createOrder={handler}
               onApprove={async (data, actions) => {
-                console.log({ data })
                 try {
                   const response = await fetch(
                     `https://api-m.sandbox.paypal.com/v2/checkout/orders/${data.orderID}/capture`,
@@ -162,24 +164,28 @@ export function PayPalProvider({
                       `${errorDetail.description} (${orderData.debug_id})`
                     )
                   } else {
-                    console.log("Capture result", orderData)
                     // (3) Successful transaction -> Show confirmation or thank you message
                     // Or go to another URL:  actions.redirect('thank_you.html');
                     const transaction =
                       orderData.purchase_units[0].payments.captures[0]
 
-                    const response = await fetch(
-                      `${constants.server.baseUrl}/orders/complete/${orderData.id}`,
+                    const response = await post(
+                      `/orders/complete/${orderData.id}`,
                       { method: "POST" }
                     )
 
-                    console.log({ response })
-
-                    setMessage(
-                      `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
-                    )
-
-                    onPaymentSuccess()
+                    if (response?.error) {
+                      console.error(response?.error)
+                      setMessage(
+                        `Sorry, your transaction could not be processed. See console for all available details`
+                      )
+                      actions.restart()
+                    } else {
+                      setMessage(
+                        `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
+                      )
+                      onPaymentSuccess()
+                    }
                   }
                 } catch (error) {
                   console.error(error)
@@ -191,8 +197,11 @@ export function PayPalProvider({
             />
             <Fade delay={1000}>
               <button
-                onClick={() => onPaymentSuccess()}
-                className="w-full border-2 shadow-md rounded-md bg-red-400 hover:bg-red-500 transition-colors text-white p-3 disabled:opacity-60"
+                onClick={() => {
+                  setMessage("")
+                  onPaymentSuccess()
+                }}
+                className="w-full rounded-sm bg-red-500 transition-colors text-white p-3 font-semibold md:text-xl disabled:opacity-60"
               >
                 Cancelar
               </button>
@@ -200,7 +209,7 @@ export function PayPalProvider({
           </div>
         )}
       </PayPalScriptProvider>
-      <MessageCard type={"error"} content={message} />{" "}
+      <MessageCard type={messageType} content={message} />
     </>
   )
 }

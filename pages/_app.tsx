@@ -8,6 +8,7 @@ import { publicProvider } from "wagmi/providers/public"
 import { polygonZkEvm, polygonZkEvmTestnet, hardhat } from "wagmi/chains"
 import { configureChains, createConfig, WagmiConfig } from "wagmi"
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
+import "react-toastify/dist/ReactToastify.css"
 
 import { constants } from "../config/constants"
 import { ClerkProvider } from "@clerk/nextjs"

@@ -7,7 +7,11 @@ type ServerResponse = {
 
 type ServerHook = {
   get: (url: string) => Promise<ServerResponse | undefined>
-  post: (url: string, body: any) => Promise<ServerResponse | undefined>
+  post: (
+    url: string,
+    body: any,
+    headers?: any
+  ) => Promise<ServerResponse | undefined>
   patch: (url: string, body: any) => Promise<ServerResponse | undefined>
   delete: (url: string) => Promise<ServerResponse | undefined>
   error: any
@@ -47,13 +51,17 @@ export const useServer = (): ServerHook => {
 
   const post = async (
     url: string,
-    body: any
+    body: any,
+    customHeaders?: any
   ): Promise<ServerResponse | undefined> => {
     return await executeOrCatch(
       () =>
         fetch(`${serverBaseUrl}${url}`, {
           method: "POST",
-          headers,
+          headers: {
+            ...headers,
+            ...customHeaders,
+          },
           body: JSON.stringify(body),
         }),
       handleResponse,

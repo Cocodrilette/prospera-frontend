@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { ToastContainer, toast } from "react-toastify"
 
 import { PayPalProvider } from "../providers/paypal-provider"
 import { ScreenSection } from "../layout/screen-section"
@@ -7,8 +8,11 @@ import { ExternalLink } from "./external-link"
 import { constants } from "../../config/constants"
 import { AppCard } from "../app/card"
 import { InternalLink } from "./internal-link"
+import { useRouter } from "next/router"
 
 export function PaymentModule() {
+  const router = useRouter()
+
   const [amount, setAmount] = useState(10)
   const [showPaypal, setShowPaypal] = useState(false)
   const [cieloAmount, setCieloAmount] = useState(amount) // [cielo]
@@ -29,6 +33,18 @@ export function PaymentModule() {
   function onPaymentSuccess() {
     setShowPaypal(false)
     setConditionsAccepted(false)
+
+    toast.success("Payment successful ✅", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+    })
+
+    setTimeout(() => {
+      router.push("/app")
+    }, 3000)
   }
 
   useEffect(() => {
@@ -40,10 +56,10 @@ export function PaymentModule() {
       <div className="flex flex-col">
         <AppCard className="mb-5 bg-yellow-100">
           <p>
-            This service is currently unavailable. We still building our app.{" "}
             <span className="font-semibold">
-              We will let you know when our platform is ready for real use.
-            </span>
+              You will need PayPal sandbox credentials to test the payment.
+            </span>{" "}
+            We will let you know when our platform is ready for everyone.
           </p>
           <p className="mt-2">
             Take a look to our{" "}
@@ -64,7 +80,7 @@ export function PaymentModule() {
           className="flex justify-center items-center w-full mt-5 mx-auto md:mt-10"
         >
           <input
-            disabled={true}
+            disabled={showPaypal}
             className="text-center w-full p-2 border-2 bg-gray-50 shadow-md rounded-lg focus:outline-none focus:border-gray-600 text-3xl font-bold"
             placeholder="10"
             type="number"
@@ -87,8 +103,8 @@ export function PaymentModule() {
         </TermsSheetCheckbox>
         <div className="flex flex-col mt-5 gap-2">
           <button
-            disabled={true}
-            onClick={() => setShowPaypal(true)}
+            disabled={!conditionsAccepted}
+            onClick={() => setShowPaypal(!showPaypal)}
             className={`border-2 shadow-md rounded-md border-black bg-black text-white p-3 disabled:opacity-60 ${
               showPaypal && "hidden"
             } shadow-md`}
@@ -105,6 +121,7 @@ export function PaymentModule() {
           onPaymentSuccess={onPaymentSuccess}
         />
       </div>
+      <ToastContainer />
     </ScreenSection>
   )
 }
