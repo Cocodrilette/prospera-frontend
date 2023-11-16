@@ -43,7 +43,7 @@ export function CieloData({ className }: { className?: string }) {
       {mounted && userBalance !== undefined ? (
         <div className="flex flex-col my-auto">
           <H1 className="text-gray-900 text-4xl md:text-5xl lg:text-6xl">
-            {userBalance}
+            {userBalance === null ? "0" : userBalance}
           </H1>
           <p className="text-gray-500 text-end">Cielo&apos;s</p>
         </div>

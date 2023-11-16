@@ -6,6 +6,8 @@ import { ScreenSection } from "../layout/screen-section"
 import { TermsSheetCheckbox } from "./terms-sheet-checkbox"
 import { ExternalLink } from "./external-link"
 import { constants } from "../../config/constants"
+import { AppCard } from "../app/card"
+import { InternalLink } from "./internal-link"
 import { useRouter } from "next/router"
 import { AppCard } from "../app/card"
 import { InternalLink } from "./internal-link"
@@ -85,7 +87,7 @@ export function PaymentModule() {
         <div className="flex flex-col mt-5 gap-2">
           <button
             disabled={!conditionsAccepted}
-            onClick={() => setShowPaypal(true)}
+            onClick={() => setShowPaypal(!showPaypal)}
             className={`border-2 shadow-md rounded-md border-black bg-black text-white p-3 disabled:opacity-60 ${
               showPaypal && "hidden"
             } shadow-md`}

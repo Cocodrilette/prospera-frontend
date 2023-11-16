@@ -1,8 +1,6 @@
 import { NextPage } from "next"
-import { Badge } from "flowbite-react"
 import { useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
-import { LineChart, Line, Tooltip } from "recharts"
 
 import { Layout } from "../../components/layout/layout"
 import { Header } from "../../components/layout/header"
@@ -12,7 +10,6 @@ import { useStorage } from "../../components/hooks/storage"
 import { TradeTable } from "../../components/app/trade-table"
 import { AppBanner } from "../../components/app/banner"
 import { CieloData } from "../../components/app/cielo-data-card/cielo-data"
-import { AppCard } from "../../components/app/card"
 import { NotificationCard } from "../../components/app/notifications-card"
 
 const App: NextPage = () => {
