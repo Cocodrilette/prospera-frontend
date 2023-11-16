@@ -25,22 +25,16 @@ export function CieloData({ className }: { className?: string }) {
 
   function getBalance() {
     if (userAddress) {
-      get(`/blockchain/balance/${userAddress}`).then((res) => {
-        if (res && res.data) {
-          setUserBalance(res.data.balance)
-        }
-      })
+      get(`/blockchain/balance/${userAddress}`)
+        .then((res) => {
+          if (res && res.data) setUserBalance(res.data.balance)
+        })
+        .catch(() => setMounted(true))
+        .finally(() => setMounted(true))
     }
   }
 
-  useEffect(() => {
-    if (userAddress) {
-      getBalance()
-      console.log({ userBalance })
-    }
-  }, [userAddress])
-
-  useEffect(() => setMounted(true), [])
+  useEffect(() => getBalance(), [userAddress])
 
   return (
     <AppCard
@@ -55,8 +49,8 @@ export function CieloData({ className }: { className?: string }) {
         </div>
       ) : (
         <>
-          <div className="h-12 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/4 "></div>
+          <div className="h-12 bg-gray-200 rounded w-1/2 animate-pulse"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/4 animate-pulse"></div>
         </>
       )}
       <div className="flex flex-col items-center gap-3">
