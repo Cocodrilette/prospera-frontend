@@ -16,6 +16,7 @@ export function TermsSheetCheckbox({
   return (
     <div className={`flex items-center ${className}`}>
       <input
+        disabled={true}
         type="checkbox"
         className="w-5 h-5 mr-3 rounded-md border-gray-300"
         checked={checked}

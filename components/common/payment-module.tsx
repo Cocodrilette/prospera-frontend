@@ -7,6 +7,8 @@ import { TermsSheetCheckbox } from "./terms-sheet-checkbox"
 import { ExternalLink } from "./external-link"
 import { constants } from "../../config/constants"
 import { useRouter } from "next/router"
+import { AppCard } from "../app/card"
+import { InternalLink } from "./internal-link"
 
 export function PaymentModule() {
   const router = useRouter()
@@ -52,6 +54,18 @@ export function PaymentModule() {
   return (
     <ScreenSection className="flex flex-col mx-2 md:max-w-2xl">
       <div className="flex flex-col">
+        <AppCard className="mb-5 bg-yellow-100">
+          <p>
+            This service is currently unavailable. We still building our app.{" "}
+            <span className="font-semibold">
+              We will let you know when our platform is ready for real use.
+            </span>
+          </p>
+          <p className="mt-2">
+            Take a look to our{" "}
+            <InternalLink href="/app ">app demo</InternalLink>
+          </p>
+        </AppCard>
         <div>
           <p className="text-5xl md:text-6xl font-extrabold text-gray-400">
             You will receive{" "}
@@ -66,7 +80,7 @@ export function PaymentModule() {
           className="flex justify-center items-center w-full mt-5 mx-auto md:mt-10"
         >
           <input
-            disabled={showPaypal}
+            disabled={true}
             className="text-center w-full p-2 border-2 bg-gray-50 shadow-md rounded-lg focus:outline-none focus:border-gray-600 text-3xl font-bold"
             placeholder="10"
             type="number"
@@ -89,7 +103,7 @@ export function PaymentModule() {
         </TermsSheetCheckbox>
         <div className="flex flex-col mt-5 gap-2">
           <button
-            disabled={!conditionsAccepted}
+            disabled={true}
             onClick={() => setShowPaypal(true)}
             className={`border-2 shadow-md rounded-md border-black bg-black text-white p-3 disabled:opacity-60 ${
               showPaypal && "hidden"
