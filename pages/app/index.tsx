@@ -51,11 +51,10 @@ const App: NextPage = () => {
         <CieloData className="row-span-2 bg-slate-50" />
         <NotificationCard className="row-span-2 " />
         <AppBanner className="row-span-1 md:col-span-2" show={true}>
-          ⚠️ The data of the table isn&apos;t real.{" "}
+          ⚠️ La información de la tabla no es real.{" "}
           <span className="font-semibold">
-            The data above instead, is real blockchain data.
-          </span>{" "}
-          We will let you know when our platform is ready for real use.
+            Te avisaremos cuando nuestra plataforma esté completamente lista.
+          </span>
         </AppBanner>
         <TradeTable className="row-span-6 md:col-span-2" />
       </Container7XL>

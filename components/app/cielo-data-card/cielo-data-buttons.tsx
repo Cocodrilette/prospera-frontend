@@ -22,21 +22,21 @@ export function CieloDataButtons({ isLoading }: { isLoading: boolean }) {
             className="text-black bg-green-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
           >
             <BsArrowDownRightSquare className="font-bold" />
-            Buy
+            Compra
           </Link>
           <button
             type="button"
             className="text-black bg-red-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
           >
             <BsArrowUpRightSquare className="font-bold" />
-            Sell
+            Vende
           </button>
           <button
             type="button"
             className="text-black bg-blue-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
           >
             <BsSend className="font-bold" />
-            Send
+            Envia
           </button>
         </div>
       )}

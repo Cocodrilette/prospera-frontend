@@ -9,6 +9,9 @@ import { constants } from "../../config/constants"
 import { AppCard } from "../app/card"
 import { InternalLink } from "./internal-link"
 import { useRouter } from "next/router"
+import { AppCard } from "../app/card"
+import { InternalLink } from "./internal-link"
+import { PriceReference } from "./price-reference"
 
 export function PaymentModule() {
   const router = useRouter()
@@ -54,27 +57,7 @@ export function PaymentModule() {
   return (
     <ScreenSection className="flex flex-col mx-2 md:max-w-2xl">
       <div className="flex flex-col">
-        <AppCard className="mb-5 bg-yellow-100">
-          <p>
-            <span className="font-semibold">
-              You will need PayPal sandbox credentials to test the payment.
-            </span>{" "}
-            We will let you know when our platform is ready for everyone.
-          </p>
-          <p className="mt-2">
-            Take a look to our{" "}
-            <InternalLink href="/app ">app demo</InternalLink>
-          </p>
-        </AppCard>
-        <div>
-          <p className="text-5xl md:text-6xl font-extrabold text-gray-400">
-            You will receive{" "}
-            <span className="text-gray-700">
-              {getCieloAmountFromPaypalAmount(amount)}
-            </span>{" "}
-            cielo&apos;s
-          </p>
-        </div>
+        <PriceReference className="my-5" />
         <form
           onSubmit={(e) => e.preventDefault()}
           className="flex justify-center items-center w-full mt-5 mx-auto md:mt-10"
@@ -94,9 +77,9 @@ export function PaymentModule() {
           className="mt-5"
         >
           <p>
-            By using our app, you agree to our{" "}
+            Al continuar, aceptas nuestros{" "}
             <ExternalLink href={constants.legal.termsOfServiceUrl}>
-              terms and conditions
+              terminos y condiciones de uso
             </ExternalLink>
             .
           </p>
@@ -115,11 +98,60 @@ export function PaymentModule() {
       </div>
 
       <div className={showPaypal ? "" : "hidden"}>
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden p-8 mb-5">
+          <table className="w-full caption-bottom text-sm">
+            <thead className="[&amp;_tr]:border-b">
+              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Articulo
+                </th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Cantidad
+                </th>
+                <th className="h-12 px-4 align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 text-right">
+                  Precio
+                </th>
+              </tr>
+            </thead>
+            <tbody className="[&amp;_tr:last-child]:border-0">
+              <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">
+                  Cielo
+                </td>
+                <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                  {cieloAmount}
+                </td>
+                <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-right">
+                  ${amount} USD
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <div className="flex justify-end mt-4">
+              <div className="w-1/3">
+                <div className="flex justify-between font-bold border-b pb-2">
+                  <p>Total</p>
+                  <p>${cieloAmount} USD</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <PayPalProvider
           forceReRender={showPaypal}
           orderDetails={{ amount: cieloAmount }}
           onPaymentSuccess={onPaymentSuccess}
         />
+      </div>
+      <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mt-5">
+        <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
+          Podras cambiar tus <span className="font-semibold">Cielos</span> en
+          cualquier momento.{" "}
+          <InternalLink href="#">
+            Revisa tu balance para saber más.
+          </InternalLink>
+        </p>
       </div>
       <ToastContainer />
     </ScreenSection>

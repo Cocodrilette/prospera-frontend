@@ -52,7 +52,7 @@ export function Banner() {
           </Fade>
           <Fade duration={700}>
             <Text className="text-white md:text-center mt-3 md:mt-5 md:text-xl">
-              The first descentralized agricultural futures market
+              El primer mercado descentralizado de futuros agrícolas
             </Text>
           </Fade>
         </div>
@@ -70,7 +70,7 @@ export function Banner() {
                 })
               }}
             >
-              Discover
+              Descubre más
             </LinkButton>
           </Fade>
           <Fade direction="up" duration={500}>
@@ -85,7 +85,7 @@ export function Banner() {
                 })
               }}
             >
-              Buy Cielo
+              Compra Cielo
             </LinkButton>
           </Fade>
           <Fade direction="up" duration={500}>
@@ -100,7 +100,7 @@ export function Banner() {
                 })
               }}
             >
-              Open App
+              Abrir aplicación
             </LinkButton>
           </Fade>
         </div>
