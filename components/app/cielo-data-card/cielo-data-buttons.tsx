@@ -29,7 +29,7 @@ export function CieloDataButtons({ isLoading }: { isLoading: boolean }) {
             className="text-black bg-red-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
           >
             <BsArrowUpRightSquare className="font-bold" />
-            Vende
+            Vender
           </button>
           <button
             type="button"
