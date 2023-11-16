@@ -4,13 +4,13 @@ import { DiscoverCard } from "./discover-section"
 
 export function Discover() {
   const blockchainBasedDescription =
-    "We're harnessing blockchain's potential to forge a secure, transparent economy where farmers and investors seamlessly connect. Our protocol-specific token serves as both currency and value store in the Prospera ecosystem."
+    "Aprovechamos el potencial de la cadena de bloques para forjar una economía segura y transparente en la que agricultores e inversores se conecten fácilmente. Nuestro token Cielo sirve como moneda y almacén de valor en el ecosistema de Prospera"
   const descentralizationDescription =
-    "Decentralized futures market for farmers to hedge against price volatility and offer secure financial instruments to investors via our robust blockchain protocol."
+    "Mercado de futuros descentralizado para que los agricultores se cubran frente a la volatilidad de los precios y ofrezcan instrumentos financieros seguros a los inversores a través de nuestro sólido protocolo blockchain."
   const lowerFeesDescription =
-    "By cutting intermediaries, we lower fees and boost profits for farmers and investors. Lightning-fast trades ensure you seize every opportunity."
+    "Al prescindir de intermediarios, reducimos las comisiones y aumentamos los beneficios de agricultores e inversores. Realiza transacciones en segundos y con las comisiones más bajas del mercado."
   const empoweringFarmersDescription =
-    "Committed to leveraging technology for farmer empowerment, innovation, investor success, and global impact. Revolutionizing the intersection of farming and investment for a secure, prosperous future."
+    "Comprometidos con el aprovechamiento de la tecnología para el empoderamiento de los agricultores, la innovación, el éxito de los inversores y el impacto global. Revolucionando la intersección entre agricultura e inversión para un futuro diferente."
 
   return (
     <div id="discover" className="bg-gray-950">
@@ -21,11 +21,11 @@ export function Discover() {
           pointsTo="decentralized"
         >
           <p>
+            Economía respaldada en blockchain para interactuar con
             <Underlined className="text-indigo-600">
               {" "}
-              Blockchain based
+              facilidad y seguridad
             </Underlined>{" "}
-            economy to interact with ease and security
           </p>
         </DiscoverCard>
         <DiscoverCard
@@ -34,13 +34,10 @@ export function Discover() {
           pointsTo="lower-fees"
         >
           <p>
-            Secure{" "}
-            <Underlined className="text-minimalPink">descentralized</Underlined>
-            , and{" "}
+            Mercado de futuros{" "}
             <Underlined className="text-minimalPink">
-              censorship-resistant
-            </Underlined>{" "}
-            futures market
+              seguro, descentralizado y resistente
+            </Underlined>
           </p>
         </DiscoverCard>
         <DiscoverCard
@@ -49,13 +46,12 @@ export function Discover() {
           pointsTo="empowering-farmers"
         >
           <p>
-            The{" "}
-            <Underlined className="text-primaryGreen">lower fees</Underlined>{" "}
-            out there and{" "}
+            Las comisiones{" "}
+            <Underlined className="text-primaryGreen">más bajas </Underlined> y
+            las{" "}
             <Underlined className="text-primaryGreen">
-              lightning-fast
+              operaciones más rápidas
             </Underlined>{" "}
-            trades
           </p>
         </DiscoverCard>
         <DiscoverCard
@@ -64,14 +60,11 @@ export function Discover() {
           pointsTo="buy-cielo"
         >
           <p>
-            <Underlined className="text-oceanGreen">
-              Empowering Farmers
-            </Underlined>
-            ,{" "}
-            <Underlined className="text-oceanGreen">
-              boosting investors
-            </Underlined>{" "}
-            and changing the world
+            Empoderar a los{" "}
+            <Underlined className="text-oceanGreen">agricultores,</Underlined>{" "}
+            impulsar a los{" "}
+            <Underlined className="text-oceanGreen">inversores</Underlined> y
+            cambiar el mundo
           </p>
         </DiscoverCard>
       </div>

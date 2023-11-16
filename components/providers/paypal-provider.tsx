@@ -11,6 +11,7 @@ import LoadingCard from "../common/loading-card"
 import { Fade } from "react-awesome-reveal"
 import { useServer } from "../hooks/server"
 import { User } from "../../types/user.types"
+import { useStorage } from "../hooks/storage"
 
 interface OrderDetails {
   amount: number
@@ -28,6 +29,7 @@ export function PayPalProvider({
   forceReRender,
 }: PayPalProviderProps) {
   const { post } = useServer()
+  const localStorage = useStorage()
 
   const [message, setMessage] = useState("")
   const [messageType, setMessageType] = useState<"error" | "success">("error")
@@ -82,6 +84,8 @@ export function PayPalProvider({
   useEffect(() => {
     let _user: string | null | User = window.localStorage.getItem("user")
 
+    console.log({ _user })
+
     if (_user && _user !== null) {
       _user = JSON.parse(_user) as User
       setUserAddress(_user.address)
@@ -95,9 +99,12 @@ export function PayPalProvider({
         tokensAmount: localOrderDetails.amount,
       }
 
+      console.log(localStorage.get("accessToken"))
+
       const response = await post("/orders", body, {
         "Content-Type": "application/json",
         Prefer: "return=representation",
+        Authorization: `Bearer ${localStorage.get("accessToken")}`,
       })
 
       const orderData = response?.data

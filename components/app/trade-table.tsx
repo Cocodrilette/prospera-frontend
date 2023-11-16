@@ -45,9 +45,9 @@ export function TradeTable({ className }: { className?: string }) {
 
   return (
     <section
-      className={`rounded-md overflow-y-auto flex flex-col gap-4 max-h-[600px] ${className}`}
+      className={`rounded-md overflow-y-auto flex flex-col gap-4 max-h-[600px] ${className} mt-5`}
     >
-      <H3>Active orders</H3>
+      <H3>Ordenes activas</H3>
       <div className="inline-flex items-center justify-between sticky top-0 z-10 bg-white py-2">
         <div>
           <a
@@ -55,28 +55,36 @@ export function TradeTable({ className }: { className?: string }) {
             aria-current="page"
             className="px-4 py-2 text-sm font-medium text-blue-700 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
           >
-            Buy
+            Comprar
           </a>
 
           <a
             href="#"
             className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
           >
-            Sell
+            Vender
           </a>
         </div>
-        <Button>Create Order</Button>
+        <Button>Crear una orden</Button>
       </div>
       <Table hoverable>
         <Table.Head className="sticky top-14 z-10 bg-white">
-          <Table.HeadCell className="bg-gray-100">Name</Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Open Date</Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Close Date</Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Product Code</Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">Producto</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100">
-            Advance (CIELO)
+            Fecha de apertura
           </Table.HeadCell>
-          <Table.HeadCell className="bg-gray-100">Price (CIELO)</Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">
+            Fecha de cierre
+          </Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">
+            Codigo de producto
+          </Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">
+            Anticipo (CIELO)
+          </Table.HeadCell>
+          <Table.HeadCell className="bg-gray-100">
+            Precio total (CIELO)
+          </Table.HeadCell>
           <Table.HeadCell className="bg-gray-100">Amount (kg)</Table.HeadCell>
           <Table.HeadCell className="bg-gray-100"></Table.HeadCell>
         </Table.Head>

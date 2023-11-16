@@ -51,14 +51,14 @@ const App: NextPage = () => {
       header={<Header />}
     >
       <Container7XL className="grid grid-cols-1 md:grid-cols-2 grid-rows-[12] gap-4 min-h-screen w-full">
-        <AppBanner className="row-span-1 md:col-span-2" show={true}>
-          ⚠️ This is not real data. This is just a demo.{" "}
-          <span className="font-semibold">
-            We will let you know when our platform is ready for real use.
-          </span>
-        </AppBanner>
         <CieloData className="row-span-2 bg-slate-50" />
         <NotificationCard className="row-span-2 " />
+        <AppBanner className="row-span-1 md:col-span-2" show={true}>
+          ⚠️ La información de la tabla no es real.{" "}
+          <span className="font-semibold">
+            Te avisaremos cuando nuestra plataforma esté completamente lista.
+          </span>
+        </AppBanner>
         <TradeTable className="row-span-6 md:col-span-2" />
       </Container7XL>
     </Layout>
