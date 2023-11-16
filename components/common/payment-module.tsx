@@ -6,11 +6,8 @@ import { ScreenSection } from "../layout/screen-section"
 import { TermsSheetCheckbox } from "./terms-sheet-checkbox"
 import { ExternalLink } from "./external-link"
 import { constants } from "../../config/constants"
-import { AppCard } from "../app/card"
 import { InternalLink } from "./internal-link"
 import { useRouter } from "next/router"
-import { AppCard } from "../app/card"
-import { InternalLink } from "./internal-link"
 import { PriceReference } from "./price-reference"
 
 export function PaymentModule() {
