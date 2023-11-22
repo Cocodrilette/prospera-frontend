@@ -21,12 +21,14 @@ interface PayPalProviderProps {
   orderDetails: OrderDetails
   onPaymentSuccess: () => void
   forceReRender?: any
+  setShowPaypal?: (showPaypal: boolean) => void
 }
 
 export function PayPalProvider({
   orderDetails,
   onPaymentSuccess,
   forceReRender,
+  setShowPaypal,
 }: PayPalProviderProps) {
   const { post } = useServer()
   const localStorage = useStorage()
@@ -206,7 +208,7 @@ export function PayPalProvider({
               <button
                 onClick={() => {
                   setMessage("")
-                  onPaymentSuccess()
+                  setShowPaypal && setShowPaypal(false)
                 }}
                 className="w-full rounded-sm bg-red-500 transition-colors text-white p-3 font-semibold md:text-xl disabled:opacity-60"
               >
