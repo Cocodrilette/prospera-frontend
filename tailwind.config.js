@@ -22,6 +22,28 @@ module.exports = {
           "linear-gradient(to top right, #fbfad3, #c6e377, #729d39, #36622b, #6fc4a4, #f7859b)",
       },
     },
+    keyframes: {
+      levitate: {
+        "0%, 100%": {
+          transform: "translateY(0)",
+        },
+        "50%": {
+          transform: "translateY(-5px)",
+        },
+      },
+      spin: {
+        "0%": {
+          transform: "rotate(0deg)",
+        },
+        "100%": {
+          transform: "rotate(360deg)",
+        },
+      },
+    },
+    animation: {
+      levitate: "levitate 3s ease-in-out infinite",
+      spin: "spin 1s linear infinite",
+    },
   },
   plugins: [require("flowbite/plugin")],
 }

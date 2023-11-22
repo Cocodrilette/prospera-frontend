@@ -145,7 +145,7 @@ export function PaymentModule() {
         <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
           Podras cambiar tus <span className="font-semibold">Cielos</span> en
           cualquier momento.{" "}
-          <InternalLink href="#">
+          <InternalLink href="/app/profile">
             Revisa tu balance para saber más.
           </InternalLink>
         </p>
