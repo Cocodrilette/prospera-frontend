@@ -7,7 +7,7 @@ import { Header } from "../../../components/layout/header"
 const Payment: NextPage = () => {
   return (
     <Layout
-      headerOptions={{ title: "Payment", description: "Payment" }}
+      headerOptions={{ title: "Prospera • Payment", description: "Payment" }}
       header={<Header />}
     >
       <div className="flex flex-col justify-center items-center mx-2 md:min-w-[600px]">

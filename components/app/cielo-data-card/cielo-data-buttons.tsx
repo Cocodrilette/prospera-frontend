@@ -15,7 +15,7 @@ export function CieloDataButtons({ isLoading }: { isLoading: boolean }) {
           <div className="h-10 bg-blue-200 rounded w-20"></div>
         </div>
       ) : (
-        <div className="flex gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           <Link
             href="/app/buy-cielo"
             type="button"
@@ -24,20 +24,22 @@ export function CieloDataButtons({ isLoading }: { isLoading: boolean }) {
             <BsArrowDownRightSquare className="font-bold" />
             Compra
           </Link>
-          <button
-            type="button"
-            className="text-black bg-red-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
-          >
-            <BsArrowUpRightSquare className="font-bold" />
-            Vender
-          </button>
-          <button
-            type="button"
-            className="text-black bg-blue-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
-          >
-            <BsSend className="font-bold" />
-            Envia
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="text-black bg-red-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
+            >
+              <BsArrowUpRightSquare className="font-bold" />
+              Vender
+            </button>
+            <button
+              type="button"
+              className="text-black bg-blue-200 shadow-sm rounded-md py-2 px-5 flex items-center justify-center gap-2"
+            >
+              <BsSend className="font-bold" />
+              Envia
+            </button>
+          </div>
         </div>
       )}
     </>

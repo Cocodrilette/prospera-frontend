@@ -44,7 +44,7 @@ const App: NextPage = () => {
 
   return (
     <Layout
-      headerOptions={{ title: "Cielo | App", description: "Cielo App" }}
+      headerOptions={{ title: "Prospera • App", description: "Cielo App" }}
       header={<Header />}
     >
       <Container7XL className="grid grid-cols-1 md:grid-cols-2 grid-rows-[12] gap-4 min-h-screen w-full">

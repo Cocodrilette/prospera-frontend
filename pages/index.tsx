@@ -7,7 +7,7 @@ import { BuyOurToken } from "../components/sections/buy-our-token/buy-our-token"
 
 const Home: NextPage = () => {
   return (
-    <Layout headerOptions={{ title: "Home", description: "Home" }}>
+    <Layout headerOptions={{ title: "Prospera • Home", description: "Home" }}>
       <Banner />
       <Discover />
       <BuyOurToken />

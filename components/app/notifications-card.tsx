@@ -20,22 +20,17 @@ export function NotificationCard({ className }: { className?: string }) {
         </div>
       )}
       {mounted && (
-        <div className="flex flex-col gap-2">
-          <div className="inline-flex justify-between items-center">
-            <H4 className="text-white">Notifications</H4>
-          </div>
-          <div className="flex flex-col gap-2">
-            {notifications.length > 0 ? (
-              notifications.map((notification, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                  <p className="text-white">{notification.title}</p>
-                  <p className="text-white">{notification.description}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-white">- Empty -</p>
-            )}
-          </div>
+        <div>
+          {notifications.length > 0 ? (
+            notifications.map((notification, index) => (
+              <div key={index} className="flex flex-col gap-2">
+                <p className="text-white">{notification.title}</p>
+                <p className="text-white">{notification.description}</p>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-200">No tienes notificaciones</p>
+          )}
         </div>
       )}
     </AppCard>

@@ -5,12 +5,12 @@ import { Header } from "../../../components/layout/header"
 import { Container7XL } from "../../../components/common/container-7xl"
 import { UserProfileLoading } from "../../../components/sections/profile/user-profile-loading"
 
-const Payment: NextPage = () => {
+const Profile: NextPage = () => {
   const { isLoaded } = useUser()
 
   return (
     <Layout
-      headerOptions={{ title: "Payment", description: "Payment" }}
+      headerOptions={{ title: "Prospera • Profile", description: "Profile" }}
       header={<Header />}
     >
       <Container7XL className="mb-20">
@@ -20,4 +20,4 @@ const Payment: NextPage = () => {
   )
 }
 
-export default Payment
+export default Profile
