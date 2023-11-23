@@ -22,7 +22,7 @@ export function BuyOurToken() {
             <Fade>
               <p className="text-xl text-gray-600 max-w-xl ">
                 Cielo es tu entrada a nuestro protocolo. Con Cielo podras pagar
-                comisiones, crear contratos contratos y almacenar valor.
+                comisiones, crear contratos y almacenar valor.
               </p>
             </Fade>
           </div>
